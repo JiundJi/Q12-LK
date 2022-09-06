@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.concurrent.*;
 
 public class BanderSnatch {
-    public static int level = 0;
+    public static String level = "eg";
     public static int wooziness = 0;
     public static int hour = 7;
     public static int min = 0;
@@ -10,9 +10,10 @@ public class BanderSnatch {
     public static int day = 1;
     public static int hp = 100;
     public static int stress = 0;
+    public static int bladder = 0;
     public static boolean hasMouse = false;
     public static boolean hasReadBook = false;
-    public static boolean hasTouchedFox = false;
+    public static boolean hasPattedFox = false;
 
     public static Scanner sc = new Scanner(System.in); 
     public static void wait(int n) {
@@ -21,6 +22,20 @@ public class BanderSnatch {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    public static void resetStats() {
+        level = "eg";
+        wooziness = 0;
+        hour = 7;
+        min = 0;
+        fatigue = 0;
+        day = 1;
+        hp = 100;
+        stress = 0;
+        bladder = 0;
+        hasMouse = false;
+        hasReadBook = false;
+        hasPattedFox = false;
     }
     public static void clear() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -47,7 +62,7 @@ public class BanderSnatch {
     public static void status() {                                                                                       //! STATUS
         System.out.println("\n\n\n\n\n\n\n");
         System.out.println("****************************************");                                                 
-        System.out.println("Du bist im " + levelCheck() + ". Es ist momentan " + time() + " Uhr.");
+        System.out.println("Du bist " + levelCheck() + ". Es ist momentan " + time() + " Uhr.");
         System.out.println("Du fuehlst dich " + fatigueCheck());                                                  //! no checking needed
         if (wooziness > 0) {                                                                                            //! check if 0
             System.out.println("Du bist " + woozinessCheck());
@@ -59,7 +74,7 @@ public class BanderSnatch {
         int m;
         System.out.println("Was moechtest du tun?");
         System.out.println("____________________");
-        if (level == 0) {
+        if (level == "eg") {
             System.out.println("[1] Treppenhaus (2)\n[2] In den Vorhof (2)\n[3] In den Deutschraum (2)\n[4] In den Ethikraum (2)\n[5] In die Bibliothek");
             System.out.println("____________________");
             m = sc.nextInt();
@@ -104,15 +119,17 @@ public class BanderSnatch {
             }
             else if (m == 3) {                                                                                          //! [3]
                 min = min + 2;
-                if (hour <= 11 || min <= 35) {
+                if (hour <= 11 && min <= 35) {
                     System.out.println("Der Raum ist voll mit Schuelern. Alle drehen sich zu dir um.");
                     System.out.println("[1] Hinsetzen\n[2] Rausgehen");
                     m = sc.nextInt();
                     if (m == 1) {
                         hour++; 
                         System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde."); 
-                        wait(2);
+                        wait(1);
                         System.out.println("Die Schulklingel laeutet und alle verlassen den Raum.");
+                        hour = 13;
+                        min = 5;
                         return;
                     }
                     else if (m == 2) {
@@ -123,15 +140,22 @@ public class BanderSnatch {
                 }
             }
             else if (m == 4) {
-                if (hour <= 7 || min <= 55) {
+                if (hour <= 7 && min <= 55) {
                         System.out.println("Schueler setzen sich hin bevor die Stunde anfaengt.");
                         System.out.println("[1] Hinsetzen\n[2] Raum verlassen");
                         m = sc.nextInt();
+                        if (m == 1) {
+                            System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde.");
+                            wait(1);
+                            System.out.println("Die Schulklingel laeutet und alle verlassen den Raum.");
+                            hour = 9;
+                            min = 25;
+                        }
                     }
                 }
-            else if (m == 5) {}
+            else if (m == 5) {actionsBooks();}
         }
-        else if (level == 1) {
+        else if (level == "og") {
             System.out.println("[1] Treppenhaus\n[2] In den Biologieraum\n[3] In die Physiksammelung\n[4] In den Chemieraum");
             System.out.println("____________________");
             m = sc.nextInt();
@@ -140,7 +164,7 @@ public class BanderSnatch {
             else if(m == 3) {}
             else if(m == 4) {}
         }
-        else if (level == -1) {
+        else if (level == "ug") {
             System.out.println("[1] Treppenhaus (2)\n[2] In den Kunstraum (2)\n[3] In die Instrumentekammer (2)\n[4] Hinter die Bühne (2)");
             System.out.println("____________________");
             m = sc.nextInt();
@@ -149,7 +173,7 @@ public class BanderSnatch {
             else if(m == 3) {}
             else if(m == 4) {}
         }
-        else if (level == -2) {
+        else if (level == "k") {
             System.out.println("[1] Treppenhaus\n[2] Den hellgrauen Kasten untersuchen\n[3] Die linke Tuer oeffnen\n[4] Weiter rein laufen");
             System.out.println("____________________");
             m = sc.nextInt();
@@ -167,6 +191,13 @@ public class BanderSnatch {
         }
     }
     
+    public static void actionsBooks() {
+        int m;
+        System.out.println("Was moechtest du tun?");
+        System.out.println("____________________");
+        System.out.println("[1] Etwas lesen\n[2] Etwas anderes lesen\n[3] Tiefer in die Bibliothek gehen");
+    }
+
     public static void actionsHome() {                                                                                  //! ACTIONS AT HOME
 
     }
@@ -238,42 +269,42 @@ public class BanderSnatch {
 
     public static void actionsTreppe() {                                                                                //! STAIRCASE
         int m;
-        if (level == 0) {
+        if (level == "eg") {
             do {
                 System.out.println("****************************************");
                 System.out.println("[1] Einen Geschoss hoeher gehen \n[2] Einen Geschoss runter gehen ");
                 System.out.println("****************************************");
                 m = sc.nextInt();
-                if (m == 1) {min++; level++; return;}
-                else if (m == 2) {min++; level--; return;}
+                if (m == 1) {min++; level = "og"; return;}
+                else if (m == 2) {min++; level = "ug"; return;}
             } while (m != 1 || m != 2);
         }
-        else if (level == 1) {
+        else if (level == "og") {
             do {
                 System.out.println("****************************************");
                 System.out.println("****************************************");
                 System.out.println("[1] Einen Geschoss runter gehen");
                 m = sc.nextInt();
-                if (m == 1) {min++; level--; return;}
+                if (m == 1) {min++; level = "eg"; return;}
             } while (m != 1);
         }
-        else if (level == -1) {
+        else if (level == "ug") {
             do {
                 System.out.println("****************************************");
                 System.out.println("[1] Einen Geschoss hoeher gehen \n[2] Einen Geschoss runter gehen ");
                 System.out.println("****************************************");
                 m = sc.nextInt();
-                if (m == 1) {min++; level++; return;}
-                else if (m == 2) {min++; level--; return;}
+                if (m == 1) {min++; level = "eg"; return;}
+                else if (m == 2) {min++; level = "k"; return;}
             } while (m != 1 || m != 2);
         }
-        else if (level == -2) {
+        else if (level == "k") {
             do {
                 System.out.println("****************************************");
                 System.out.println("****************************************");
                 System.out.println("[1] Einen Geschoss hoeher gehen");
                 m = sc.nextInt();
-                if (m == 1) {min++; level++; return;}
+                if (m == 1) {min++; level = "ug"; return;}
             } while (m != 1);
         }
     }
@@ -307,18 +338,34 @@ public class BanderSnatch {
         if (wooziness < 30) {
             fat = "waermer als sonst.";
             stress--;
+            bladder++;
         }
         else if (wooziness > 30) {
             fat = "etwas angetrunken.";
             stress -= 5;
+            bladder += 2;
         }
         else if (wooziness > 50) {
             fat = "ziemlich behaemmert.";
             stress -= 10;
+            bladder += 3;
         }
         else if (wooziness > 80) {
             fat = "sturzbesoffen.";
             stress -= 20;
+            bladder += 4;
+            double b = Math.random() * 101;
+            if (b <= 20) {
+                int d = day;
+                resetStats();
+                hp = 50;
+                System.out.println("Dir wird schwarz vor Augen.");
+                wait(1);
+                day = d + 1;
+                clear();
+                System.out.println("Es ist ein Tag vergangen.");
+                hour = 17;
+            }
         }
         else if (wooziness >= 100) {
             tod();
@@ -329,17 +376,23 @@ public class BanderSnatch {
     public static String levelCheck() {
         String fat = "";
 
-        if (level == -2) {
-            fat = "Keller";
+        if (level == "k") {
+            fat = "im Keller";
         }
-        else if (level == -1) {
-            fat = "Untergeschoss";
+        else if (level == "ug") {
+            fat = "im Untergeschoss";
         }
-        else if (level == 0) {
-            fat = "Erdgeschoss";
+        else if (level == "eg") {
+            fat = "im Erdgeschoss";
         }
-        else if (level == 1) {
-            fat = "Obergeschoss";
+        else if (level == "og") {
+            fat = "im Obergeschoss";
+        }
+        else if (level == "bb") {
+            fat = "in der Bibliothek";
+        }
+        else if (level == "wc") {
+            fat = "auf der Toilette";
         }
         return fat;
     }
@@ -355,7 +408,7 @@ public class BanderSnatch {
     }
     
     public static boolean schoolEnd() {
-        if (hour == 15) {
+        if (hour == 17 && min == 15) {
             System.out.println("Die Schule ist für heute vorbei, deswegen gehst du nach Hause."); 
             return true; 
         } else {
@@ -365,7 +418,7 @@ public class BanderSnatch {
     
     public static boolean homeEnd() {
         if (hour == 22) {
-            day++; level = 0; wooziness = 0; hour = 7; min = 0; fatigue = 0;
+            day++; level = "eg"; wooziness = 0; hour = 7; min = 0; fatigue = 0;
             System.out.println("********************************************************************************");
             System.out.println("Es ist spät und du gehst schlafen.");
             System.out.println("Es ist früher Morgen und du begibst dich zur Schule.");
@@ -382,16 +435,7 @@ public class BanderSnatch {
         System.out.println("Moechtest du nochmal spielen? \n[1] Ja [2] Nein \n___________________________");
         int m = sc.nextInt();
         if (m == 1) {
-            level = 0;
-            wooziness = 0;
-            hour = 7;
-            min = 0;
-            fatigue = 0;
-            day = 1;
-            hp = 100;
-            hasMouse = false;
-            hasReadBook = false;
-            hasTouchedFox = false;
+            resetStats();
             game();
         }
         if (m == 2) {System.exit(0);}
