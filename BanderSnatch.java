@@ -104,9 +104,7 @@ public class BanderSnatch {
             }
             else if (m == 3) {                                                                                          //! [3]
                 min = min + 2;
-                if (hour < 11 || min == 30) {
-                    System.out.println("Der Raum ist leer.");
-                } else {
+                if (hour <= 11 || min <= 35) {
                     System.out.println("Der Raum ist voll mit Schuelern. Alle drehen sich zu dir um.");
                     System.out.println("[1] Hinsetzen\n[2] Rausgehen");
                     m = sc.nextInt();
@@ -120,9 +118,17 @@ public class BanderSnatch {
                     else if (m == 2) {
                         return;
                     }
+                } else {
+                    System.out.println("Der Raum ist leer.");
                 }
             }
-            else if (m == 4) {}
+            else if (m == 4) {
+                if (hour <= 7 || min <= 55) {
+                        System.out.println("Schueler setzen sich hin bevor die Stunde anfaengt.");
+                        System.out.println("[1] Hinsetzen\n[2] Raum verlassen");
+                        m = sc.nextInt();
+                    }
+                }
             else if (m == 5) {}
         }
         else if (level == 1) {
