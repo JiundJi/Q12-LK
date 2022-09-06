@@ -1,63 +1,76 @@
 public class BenderSnatch {
-    int level = 0;                                                                                  //! etage, nicht level
+    int level = 0;                                                                                                      //! etage, nicht level
     int wooziness = 0;
-    int time = 7;
+    int hour = 7;
+    int min = 0;
     int fatigue = 0;
+    int day = 1;
 
     public static void main (String[] args) {
-        while (true) {                                                                                  //! es tut mir leid
-            System.out.println("****************************************");                                                 //* status start
-            System.out.println("Du bist im " + levelCheck(level) + ". Es ist momentan " + time + " Uhr.");
-            System.out.println("Du fühlst dich " + fatigueCheck(fatigue));                                     //! no checking needed
-            if (wooziness > 0) {                                                                        //! check if 0
-                System.out.println("Du bist " + woozinessCheck(wooziness));
-            }
-            System.out.println("****************************************");                                                 //* status end
-            System.out.println("Was möchtest du tun?");
+        while (true) {                                                                                                  //! es tut mir leid
+            schoolEnd();
+            status();
             actions(level);
         }
     }
+    public void status() {
+        System.out.println("****************************************");                                                 //* status start
+        System.out.println("Du bist im " + levelCheck(level) + ". Es ist momentan " + time(); + " Uhr.");
+        System.out.println("Du fühlst dich " + fatigueCheck(fatigue));                                                  //! no checking needed
+        if (wooziness > 0) {                                                                                            //! check if 0
+            System.out.println("Du bist " + woozinessCheck(wooziness));
+        }
+        System.out.println("****************************************");                                                 //* status end    
+    }
 
-    public void actions(int n) {
+    public void actions(int etage) {
         int m;
-
-        if (n == 0) {
-            System.out.println("[1] Ins Treppenhaus \n
-                                [2] In den Vorhof   \n
-                                [3] In den Deutschraum");
+        System.out.println("Was möchtest du tun?");
+        System.out.println("____________________");
+        if (etage == 0) {
+            System.out.println("[1] Ins Treppenhaus (2) \n
+                                [2] In den Vorhof (3)   \n
+                                [3] In den Deutschraum (1)");
             m = InOut.readInt();
-            if (m == 1) {actionsTreppe(); return();}
+            if (m == 1) {
+                min = min + 2; 
+                actionsTreppe(); 
+                return;
+                }
             else if (m == 2) {
+                min = min + 3;
                 do {
                     System.out.println("Drauszen stehen ein paar Schueler rum. Es gibt nichts interessantes.");
                     System.out.println("[1] Wieder rein gehen");
                     m = InOut.readInt();
                 } while (m != 1)
+                return;
             }
             else if (m == 3) {
-                if (time == 11) {
+
+                if (hour == 11) {
                     System.out.println("Der Raum ist leer.");
                 } else {
                     System.out.println("Der Raum ist voll mit Schuelern. Alle drehen sich zu dir um.");
                     System.out.println("[1] Hinsetzen   \n
                                         [2] Rausgehen");
                     m = InOut.readInt();
-                    if (m == 1) {time++; System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde. \n Die Schulklingel laeutet und alle verlassen den Raum."); return();}
-                    else if (m == 2) {return();}
+                    if (m == 1) {hour++; System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde. \n Die Schulklingel laeutet und alle verlassen den Raum."); return;}
+                    else if (m == 2) {return;}
                 }
             }
         }
-        else if (n == 1) {
+        else if (etage == 1) {
             if (1 == InOut.readInt("[1] Einen Geschoss runter gehen")) {level--;}
             if (2 == InOut.readInt("[2] In den Vorhof")) {}
             if (3 == InOut.readInt("[3] In den Deutschraum")) {}
         }
-        else if (n == -1) {
-            if (1 == InOut.readInt("[1] Ins Treppenhaus")) {actionsTreppe(); return();}
+        else if (etage == -1) {
+            if (1 == InOut.readInt("[1] Ins Treppenhaus")) {actionsTreppe(); return;}
             if (2 == InOut.readInt("[2] In den Vorhof")) {}
             if (3 == InOut.readInt("[3] In den Deutschraum")) {}
         }
-        else if (n == -2) {
+        else if (etage == -2) {
             if (1 == InOut.readInt("[1] Einen Geschoss hoeher gehen")) {level++;}
             if (2 == InOut.readInt("[2] In den Vorhof")) {}
             if (3 == InOut.readInt("[3] In den Deutschraum")) {}
@@ -69,8 +82,8 @@ public class BenderSnatch {
         System.out.println("[1] Einen Geschoss hoeher gehen \n
                             [2] Einen Geschoss runter gehen ");
         System.out.println("****************************************");
-        if (1 == InOut.readInt()) {level++; return();}
-        else if (2 == InOut.readInt()) {level--; return();}
+        if (1 == InOut.readInt()) {level++; return;}
+        else if (2 == InOut.readInt()) {level--; return;}
     }
 
     public String fatigueCheck (int n) {
@@ -95,7 +108,7 @@ public class BenderSnatch {
     public String woozinessCheck (int n) {
         String fat;
         if (n < 30) {
-            fat = "etwas offener gegenueber anderen."
+            fat = "etwas wärmer als sonst."
         }
         else if (n > 30) {
             fat = "etwas angetrunken.";
@@ -127,5 +140,24 @@ public class BenderSnatch {
             fat = "Obergeschoss";
         }
         return fat;
+    }
+    public String time () {
+        if (min >= 60) {
+            min = min - 60;
+            hour++;
+        }
+        String t = hour + ":" + min;
+        return t;
+    }
+    public void schoolEnd () {
+        if (hour == 15) {
+            day++; level = 0; wooziness = 0; hour = 7; min = 0; fatigue = 0;
+            System.out.println("Die Schule ist für heute vorbei, deswegen gehst du nach Hause."); 
+            System.out.flush(); 
+            System.out.println("Es ist früher Morgen und du begibst dich zur Schule.");
+            return; 
+        } else {
+            return;
+        }
     }
 }
