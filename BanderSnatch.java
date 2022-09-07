@@ -12,6 +12,11 @@ public class BanderSnatch {
     public static int stress = 0;
     public static int bladder = 0;
     public static int philosophy = 0;
+    public static int acting = 0;
+    public static int math = 0;
+    public static int biology = 0;
+    public static int physics = 0;
+    public static String [][] book = new String[20][3];
     public static boolean hasMouse = false;
     public static boolean hasReadBook = false;
     public static boolean hasPattedFox = false;
@@ -203,36 +208,43 @@ public class BanderSnatch {
             System.out.println("Du gehst zu den Buecherregalen.");
             System.out.println(randomBook());
             m = sc.nextInt();
-            if (m == 1) {
-
-            }
+            bookReward(m);
         }
+    }
+
+    public static void bookReward(int n) {
+        for (int i = 1; i<21; i++) {
+            String boo = book[i][n];
+
+        }
+
+
     }
 
     public static String randomBook() {
         String fat = "";
-        for (int i=1; i++; i<4) {
+        for (int i = 1; i<4; i++) {
             double b = Math.random() * 21;        
-            if (b == 1) {fat = fat + "\n[" + i + "] Sofies Welt";}
-            else if (b == 2) {fat = fat + "\n[" + i + "] Das Grosze Woerterbuch der deutschen Sprache";}
-            else if (b == 3) {fat = fat + "\n[" + i + "] Die Kaenguru Chroniken";}
-            else if (b == 4) {fat = fat + "\n[" + i + "] Lexikon der Biologie";}
-            else if (b == 5) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 6) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 7) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 8) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 9) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 10) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 11) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 12) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 13) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 14) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 15) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 16) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 17) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 18) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 19) {fat = fat + "\n[" + i + "] ";}
-            else if (b == 20) {fat = fat + "\n[" + i + "] ";}
+            if (b == 1) {book[1][i] = "Sofies Welt"; fat = fat + "\n[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 2) {book[2][i] = "Das Grosze Woerterbuch der deutschen Sprache"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 3) {book[3][i] = "Die Kaenguru Chroniken"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 4) {book[4][i] = "Lexikon der Biologie"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 5) {book[5][i] = "Ups and Downs - Einfuehrung in Quantenphysik"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 6) {book[6][i] = "Algebra 1"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 7) {book[7][i] = "Kritik der reinen Vernunft"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 8) {book[8][i] = "Was ist sein? Was ist nicht sein?"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 9) {book[9][i] = "Gott ist tot"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 10) {book[10][i] = "Die Bibel"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 11) {book[11][i] = "Romeo und Julia"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 12) {book[12][i] = "Emile oder ueber die Erziehung"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 13) {book[13][i] = "Also sprach Zarathustra"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 14) {book[14][i] = "Das grosze Buch der Witze"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 15) {book[15][i] = "Nichts, rein gar nichts: Das Buch fuer alle, die sich nichts wuenschen"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 16) {book[16][i] = "Algebra 2"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 17) {book[17][i] = "Faith and Misery"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 18) {book[18][i] = "With the lights out, its less dangerous"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 19) {book[19][i] = "Leave it alone, Find a home, Go back home"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
+            else if (b == 20) {book[20][i] = "I did it my way"; fat = fat + "[" + i + "] " + book[0][i] + "\n";}
         }    
         return fat;
     }
