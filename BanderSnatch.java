@@ -207,21 +207,20 @@ public class BanderSnatch {
         if (m == 1) {
             min++;
             System.out.println("Du gehst zu den Buecherregalen.");
-            randomBook();
-            System.out.println(bookOpt);
+            System.out.println(randomBook());
             m = sc.nextInt();
             bookReward(m);
         }
     }
 
     public static void bookReward(int n) {
-
+        
     }
 
     public static String randomBook() {
         bookOpt = "";
         for (int i = 1; i<4; i++) {
-            double b = Math.random() * 21;        
+            double b = (int) Math.random() * 21;
             if (b == 1) {book[0][i] = "Sofies Welt"; bookOpt = bookOpt + "\n[" + i + "] " + book[0][i] + "\n";}
             else if (b == 2) {book[0][i] = "Das Grosze Woerterbuch der deutschen Sprache"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
             else if (b == 3) {book[0][i] = "Die Kaenguru Chroniken"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
