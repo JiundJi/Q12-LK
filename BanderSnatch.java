@@ -11,6 +11,7 @@ public class BanderSnatch {
     public static int hp = 100;
     public static int stress = 0;
     public static int bladder = 0;
+    public static int philosophy = 0;
     public static boolean hasMouse = false;
     public static boolean hasReadBook = false;
     public static boolean hasPattedFox = false;
@@ -196,6 +197,44 @@ public class BanderSnatch {
         System.out.println("Was moechtest du tun?");
         System.out.println("____________________");
         System.out.println("[1] Etwas lesen\n[2] Etwas anderes lesen\n[3] Tiefer in die Bibliothek gehen");
+        m = sc.nextInt();
+        if (m == 1) {
+            min++;
+            System.out.println("Du gehst zu den Buecherregalen.");
+            System.out.println(randomBook());
+            m = sc.nextInt();
+            if (m == 1) {
+
+            }
+        }
+    }
+
+    public static String randomBook() {
+        String fat = "";
+        for (int i=1; i++; i<4) {
+            double b = Math.random() * 21;        
+            if (b == 1) {fat = fat + "\n[" + i + "] Sofies Welt";}
+            else if (b == 2) {fat = fat + "\n[" + i + "] Das Grosze Woerterbuch der deutschen Sprache";}
+            else if (b == 3) {fat = fat + "\n[" + i + "] Die Kaenguru Chroniken";}
+            else if (b == 4) {fat = fat + "\n[" + i + "] Lexikon der Biologie";}
+            else if (b == 5) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 6) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 7) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 8) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 9) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 10) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 11) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 12) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 13) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 14) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 15) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 16) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 17) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 18) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 19) {fat = fat + "\n[" + i + "] ";}
+            else if (b == 20) {fat = fat + "\n[" + i + "] ";}
+        }    
+        return fat;
     }
 
     public static void actionsHome() {                                                                                  //! ACTIONS AT HOME
