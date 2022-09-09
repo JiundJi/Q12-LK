@@ -14,10 +14,14 @@ public class BanderSnatch {
     public static int philosophy = 0;
     public static int acting = 0;
     public static int math = 0;
+    public static int ger = 0;
+    public static int eng = 0;
     public static int biology = 0;
     public static int physics = 0;
     public static String [][] book = new String[1][4];
-    public static String bookOpt = "";
+    public static int [] pick = new int[4]; //3 picked books
+    public static int bookID = 0; // bookID of the last book
+    public static String bookOpt = ""; // for output
     public static boolean hasMouse = false;
     public static boolean hasReadBook = false;
     public static boolean hasPattedFox = false;
@@ -160,7 +164,7 @@ public class BanderSnatch {
                         }
                     }
                 }
-            else if (m == 5) {actionsBooks();}
+            else if (m == 5) {level = "bb"; actionsBooks();}
         }
         else if (level == "og") {
             System.out.println("[1] Treppenhaus\n[2] In den Biologieraum\n[3] In die Physiksammelung\n[4] In den Chemieraum");
@@ -214,34 +218,44 @@ public class BanderSnatch {
     }
 
     public static void bookReward(int n) {
-        
+        for (int i = 1; i<4; i++) {
+            if (n == i) {
+                bookID = pick[n];
+            }
+        }
+            if (bookID == 0) {stress -= 5; fatigue++; ger += 10; philosophy += 25;}
+            else if (bookID == 1) {stress -= 5; fatigue++; ger += 25;}
+            else if (bookID == 2) {stress -= 20; fatigue -= 10; hp = 100;}
+            else if (bookID == 3) {stress += 5; fatigue++; ger += 10; biology += 25;}
+            else if (bookID == 4) {stress += 5; fatigue++; ger += 10; physics += 25;}
+            else if (bookID == 5) {stress += 5; fatigue++; ger += 5; math += 10;}
+            else if (bookID == 6) {stress ++; fatigue++; ger += 20; philosophy += 30;}
+            else if (bookID == 7) {stress -= 10; fatigue++; ger += 10; acting += 20;}
+            else if (bookID == 8) {stress++; fatigue++; ger += 20; philosophy += 20;}
+            else if (bookID == 9) {stress++; fatigue++; ger += 5; philosophy += 5;}
+            else if (bookID == 10) {stress -= 10; fatigue++; ger += 10; acting += 10;}
+            else if (bookID == 11) {stress -= 10; fatigue++; ger += 10; philosophy += 10;}
+            else if (bookID == 12) {stress -= 5; fatigue++; ger += 15; philosophy += 10;}
+            else if (bookID == 13) {stress -= 20; fatigue++;}
+            else if (bookID == 14) {stress -= 20; fatigue -= 10;}
+            else if (bookID == 15) {stress += 5; fatigue++; ger += 5; math += 20;}
+            else if (bookID == 16) {stress++; fatigue++; eng += 25;}
+            else if (bookID == 17) {stress++; fatigue++; eng += 25;}
+            else if (bookID == 18) {stress++; fatigue++; eng += 25;}
+            else if (bookID == 19) {stress++; fatigue++; eng += 25;}
     }
 
     public static String randomBook() {
         bookOpt = "";
+        double rndm = 0;
         for (int i = 1; i<4; i++) {
-            double b = (int) Math.random() * 21;
-            if (b == 1) {book[0][i] = "Sofies Welt"; bookOpt = bookOpt + "\n[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 2) {book[0][i] = "Das Grosze Woerterbuch der deutschen Sprache"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 3) {book[0][i] = "Die Kaenguru Chroniken"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 4) {book[0][i] = "Lexikon der Biologie"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 5) {book[0][i] = "Ups and Downs - Einfuehrung in Quantenphysik"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 6) {book[0][i] = "Algebra 1"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 7) {book[0][i] = "Kritik der reinen Vernunft"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 8) {book[0][i] = "Was ist sein? Was ist nicht sein?"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 9) {book[0][i] = "Gott ist tot"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 10) {book[0][i] = "Die Bibel"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 11) {book[0][i] = "Romeo und Julia"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 12) {book[0][i] = "Emile oder ueber die Erziehung"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 13) {book[0][i] = "Also sprach Zarathustra"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 14) {book[0][i] = "Das grosze Buch der Witze"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 15) {book[0][i] = "Nichts, rein gar nichts: Das Buch fuer alle, die sich nichts wuenschen"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 16) {book[0][i] = "Algebra 2"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 17) {book[0][i] = "Faith and Misery"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 18) {book[0][i] = "With the lights out, its less dangerous"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 19) {book[0][i] = "Leave it alone, Find a home, Go back home"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-            else if (b == 20) {book[0][i] = "I did it my way"; bookOpt = bookOpt + "[" + i + "] " + book[0][i] + "\n";}
-        }    
+            do {
+                rndm = Math.random() * 20;
+            } while((int) rndm == pick[1] || (int) rndm == pick[2]);
+            pick[i] = (int) rndm;
+
+            System.out.println("[" + i + "] " + bookName[(int) rndm]);
+        }
         return bookOpt;
     }
 
@@ -487,4 +501,28 @@ public class BanderSnatch {
         }
         if (m == 2) {System.exit(0);}
     }
+
+    public static String bookName[] = {
+    /*0 */    "Sofies Welt",
+    /*1 */    "Das Grosze Woerterbuch der deutschen Sprache",
+    /*2 */    "Die Kaenguru Chroniken",
+    /*3 */    "Lexikon der Biologie",
+    /*4 */    "Ups and Downs - Einfuehrung in Quantenphysik",
+    /*5 */    "Algebra 1",
+    /*6 */    "Kritik der reinen Vernunft",
+    /*7 */    "Was ist sein? Was ist nicht sein?",
+    /*8 */    "Gott ist tot",
+    /*9 */    "Die Bibel",
+    /*10 */    "Romeo und Julia",
+    /*11 */    "Emile oder ueber die Erziehung",
+    /*12 */    "Also sprach Zarathustra",
+    /*13 */    "Das grosze Buch der Witze",
+    /*14 */    "Nichts, rein gar nichts: Das Buch fuer alle, die sich nichts wuenschen",
+    /*15 */    "Algebra 2",
+    /*16 */    "Faith and Misery",
+    /*17 */    "With the lights out, its less dangerous",
+    /*18 */    "Leave it alone, Find a home, Go back home",
+    /*19 */    "I did it my way"
+    };
+
 }
