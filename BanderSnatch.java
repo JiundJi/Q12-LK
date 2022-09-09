@@ -29,7 +29,7 @@ public class BanderSnatch {
     public static Scanner sc = new Scanner(System.in); 
     public static void wait(int n) {
         try {
-            TimeUnit.SECONDS.sleep(n);
+            TimeUnit.MILLISECONDS.sleep(n);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -59,26 +59,26 @@ public class BanderSnatch {
         while (true) {
             while (!schoolEnd()) {
                 status();
-                wait(1);
+                wait(500);
                 actionsSchool();
             }
             while (!homeEnd()) {
                 status();
-                wait(1);
+                wait(500);
                 actionsHome();
             }
         }
     }
 
     public static void status() {                                                                                       //! STATUS
-        System.out.println("\n\n\n\n\n\n\n");
-        System.out.println("****************************************");                                                 
-        System.out.println("Du bist " + levelCheck() + ". Es ist momentan " + time() + " Uhr.");
-        System.out.println("Du fuehlst dich " + fatigueCheck());                                                  //! no checking needed
+        System.out.println("\n\n\n");
+        System.out.println("***************************************************");                                                 
+        System.out.println("|| Du bist " + levelCheck() + ". Es ist momentan " + time() + " Uhr.");
+        System.out.println("|| Du fuehlst dich " + fatigueCheck());                                                  //! no checking needed
         if (wooziness > 0) {                                                                                            //! check if 0
             System.out.println("Du bist " + woozinessCheck());
         }
-        System.out.println("****************************************");                                                   
+        System.out.println("***************************************************");                                                   
     }
 
     public static void actionsSchool() {                                                                                //! ACTIONS AT SCHOOL
@@ -86,9 +86,10 @@ public class BanderSnatch {
         System.out.println("Was moechtest du tun?");
         System.out.println("____________________");
         if (level == "eg") {
-            System.out.println("[1] Treppenhaus (2)\n[2] In den Vorhof (2)\n[3] In den Deutschraum (2)\n[4] In den Ethikraum (2)\n[5] In die Bibliothek");
-            System.out.println("____________________");
+            System.out.println("[1] Treppenhaus (2)\n[2] In den Vorhof (2)\n[3] In den Deutschraum (2)\n[4] In den Ethikraum (2)\n[5] In die Bibliothek (2)");
+            System.out.println("--------------------");
             m = sc.nextInt();
+            System.out.println("--------------------");
             if (m == 1) {                                                                                               //! [1]
                 min = min + 2; 
                 actionsTreppe(); 
@@ -137,7 +138,7 @@ public class BanderSnatch {
                     if (m == 1) {
                         hour++; 
                         System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde."); 
-                        wait(1);
+                        wait(1000);
                         System.out.println("Die Schulklingel laeutet und alle verlassen den Raum.");
                         hour = 13;
                         min = 5;
@@ -157,14 +158,14 @@ public class BanderSnatch {
                         m = sc.nextInt();
                         if (m == 1) {
                             System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde.");
-                            wait(1);
+                            wait(1000);
                             System.out.println("Die Schulklingel laeutet und alle verlassen den Raum.");
                             hour = 9;
                             min = 25;
                         }
                     }
                 }
-            else if (m == 5) {level = "bb"; actionsBooks();}
+            else if (m == 5) {level = "bb"; min += 2;}
         }
         else if (level == "og") {
             System.out.println("[1] Treppenhaus\n[2] In den Biologieraum\n[3] In die Physiksammelung\n[4] In den Chemieraum");
@@ -189,31 +190,36 @@ public class BanderSnatch {
             System.out.println("____________________");
             m = sc.nextInt();
             if (m == 1) {actionsTreppe();}
-            else if(m == 2) {System.out.println("Das scheint der Stromkasten zu sein."); wait (1); return;}
+            else if(m == 2) {System.out.println("Das scheint der Stromkasten zu sein."); wait (1000); return;}
             else if(m == 3) {
                 System.out.println("Du oeffnest die Tuer. Der Raum dahinter scheint leer zu sein.");
-                wait(1);
+                wait(1000);
                 System.out.println("Nach zwei Schritten zieht etwas unsichtbares an deinem Bein! Du versuchst dich loszuziehen, aber du wirst runtergezogen.");
-                
-                System.out.println("."); wait(1); clear(); System.out.println(".."); wait(1); clear(); System.out.println("...");
-                System.out.println("Du bist in den Backrooms gelandet. Viel Glueck.");
+                backrooms();
             }
             else if(m == 4) {actionsDeepCellar();}
         }
-    }
-    
-    public static void actionsBooks() {
-        int m;
-        System.out.println("Was moechtest du tun?");
-        System.out.println("____________________");
-        System.out.println("[1] Etwas lesen\n[2] Etwas anderes lesen\n[3] Tiefer in die Bibliothek gehen");
-        m = sc.nextInt();
-        if (m == 1) {
-            min++;
-            System.out.println("Du gehst zu den Buecherregalen.");
-            System.out.println(randomBook());
+        else if (level == "bb") {
+            System.out.println("[1] Etwas lesen\n[2] Tiefer in die Bibliothek gehen\n[3] Zuereck");
             m = sc.nextInt();
-            bookReward(m);
+            if (m == 1) {
+                min++;
+                System.out.println("Du gehst zu den Buecherregalen.");
+                System.out.println(randomBook());
+                m = sc.nextInt();
+                bookReward(m);
+            }
+            else if (m == 2) {
+                System.out.println("Du findest einen Computer und eine Tuer.");
+                System.out.println("[1] Zum Computer\n[2] Zur Tuer");
+                m = sc.nextInt();
+                if (m == 1) {
+                    backrooms();
+                }
+            }
+            else if (m == 3) {
+                level = "eg";
+            }
         }
     }
 
@@ -273,7 +279,7 @@ public class BanderSnatch {
             if (m == 1) {return;}
             else if(m == 2) {
                 System.out.println("Diese Tuer ist verschlossen.");
-                wait(1);
+                wait(500);
                 actionsDeepCellar();
             }
             else if(m == 3) {
@@ -299,7 +305,7 @@ public class BanderSnatch {
                             m = sc.nextInt();
                             if (m == 1) {
                                 System.out.println("'Ich bin hier' sagst du. Er schaut dich an, das Licht seiner Taschenlampe nimmt dir die Sicht. \n'Es ist fuer Schueler verboten, in den Keller zu gehen.' sagt er. 'Du bleibst nach dem Unterricht und gehst Nachsitzen. Sei nicht zu spaet.'");
-                                wait(2);
+                                wait(2000);
                                 System.out.println("Du verlaesst den Keller.");
                                 return;
                             }
@@ -332,9 +338,9 @@ public class BanderSnatch {
         int m;
         if (level == "eg") {
             do {
-                System.out.println("****************************************");
-                System.out.println("[1] Einen Geschoss hoeher gehen \n[2] Einen Geschoss runter gehen ");
-                System.out.println("****************************************");
+                System.out.println("***********************************");
+                System.out.println("* [1] Einen Geschoss hoeher gehen *\n* [2] Einen Geschoss runter gehen *");
+                System.out.println("***********************************");
                 m = sc.nextInt();
                 if (m == 1) {min++; level = "og"; return;}
                 else if (m == 2) {min++; level = "ug"; return;}
@@ -421,7 +427,7 @@ public class BanderSnatch {
                 resetStats();
                 hp = 50;
                 System.out.println("Dir wird schwarz vor Augen.");
-                wait(1);
+                wait(2000);
                 day = d + 1;
                 clear();
                 System.out.println("Es ist ein Tag vergangen.");
@@ -492,7 +498,7 @@ public class BanderSnatch {
 
     public static void tod() {
         System.out.println("Du bist gestorben.");
-        wait(2);
+        wait(2000);
         System.out.println("Moechtest du nochmal spielen? \n[1] Ja [2] Nein \n___________________________");
         int m = sc.nextInt();
         if (m == 1) {
@@ -500,6 +506,35 @@ public class BanderSnatch {
             game();
         }
         if (m == 2) {System.exit(0);}
+    }
+
+    public static void backrooms() {
+        clear();
+        System.out.println("."); wait(500); clear(); System.out.println(".."); wait(500); clear(); System.out.println("..."); wait(1000);
+        System.out.println("$CORRUPT");
+        wait(500);
+        clear();
+        System.out.println("CO R UPT T ED");
+        System.out.println("ERRäR");
+        wait(500);
+        System.out.println("äääääää");
+        wait(500);
+        clear();
+        System.out.println("dU bäST IN BääkääOää");
+        System.out.println("ääääääääääääääääääääääääääääääääääääääääääääääääääääää");
+        System.out.println("SYSTEM CäRRUPTED");
+        for (int i = 0; i<101; i++) {
+            System.out.println(i + "% äOAäääG ää äääääääääää");
+            System.out.println("");
+            
+            
+        }
+        String m = sc.next();
+        while (m != "cd ..") {
+                System.out.println("WäITING FOR UäER INPUT");
+                m = sc.next();
+                wait(500);
+        }
     }
 
     public static String bookName[] = {
@@ -524,5 +559,4 @@ public class BanderSnatch {
     /*18 */    "Leave it alone, Find a home, Go back home",
     /*19 */    "I did it my way"
     };
-
 }
