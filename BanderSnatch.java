@@ -80,7 +80,7 @@ public class BanderSnatch {
         System.out.println("|| Du bist " + levelCheck() + ". Es ist momentan " + time() + " Uhr.");
         System.out.println("|| Du fuehlst dich " + fatigueCheck());                                                  //! no checking needed
         if (wooziness > 0) {                                                                                            //! check if 0
-            System.out.println("Du bist " + woozinessCheck());
+            System.out.println("|| Du bist " + woozinessCheck());
         }
         System.out.println("***************************************************");                                                   
     }
