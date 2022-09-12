@@ -80,7 +80,7 @@ public class BanderSnatch {
         System.out.println("|| Du bist " + levelCheck() + ". Es ist momentan " + time() + " Uhr.");
         System.out.println("|| Du fuehlst dich " + fatigueCheck());                                                  //! no checking needed
         if (wooziness > 0) {                                                                                            //! check if 0
-            System.out.println("Du bist " + woozinessCheck());
+            System.out.println("|| Du bist " + woozinessCheck());
         }
         System.out.println("***************************************************");                                                   
     }
@@ -104,7 +104,7 @@ public class BanderSnatch {
         System.out.println("Was moechtest du tun?");
         System.out.println("____________________");
         if (level == "eg") {
-            System.out.println("[1] Treppenhaus (2)\n[2] In den Vorhof (2)\n[3] In den Deutschraum (2)\n[4] In den Ethikraum (2)\n[5] In die Bibliothek (2)");
+            System.out.println("[1] Treppenhaus (2)\n[2] In den Vorhof (2)\n[3] In den Deutschraum (2)\n[4] In den Ethikraum (2)\n[5] In die Bibliothek (2)\n[9] Deine Statistiken");
             System.out.println("--------------------");
             m = sc.nextInt();
             System.out.println("--------------------");
@@ -202,19 +202,90 @@ public class BanderSnatch {
                     }
                 }
             else if (m == 5) {level = "bb"; min += 2;}                                                                  //! [5]
+            else if (m == 9) {statCheck();}                                                                             //! [9]
         }
         else if (level == "og") {
-            System.out.println("[1] Treppenhaus\n[2] In den Biologieraum\n[3] In die Physiksammelung\n[4] In den Chemieraum");
+            System.out.println("[1] Treppenhaus\n[2] In den Biologieraum\n[3] In die Physiksammelung\n[4] In den Chemieraum\n[9] Deine Statistiken");
             System.out.println("--------------------");
             m = sc.nextInt();
             System.out.println("--------------------");
             if (m == 1) {actionsTreppe();}
-            else if(m == 2) {}
-            else if(m == 3) {}
-            else if(m == 4) {}
+            else if(m == 2) {
+                min = min + 2;
+                if (hour == 11 && min <= 35 || min >= 15) {
+                    System.out.println("Der Raum ist voll mit Schuelern. Alle drehen sich zu dir um.");
+                    System.out.println("____________________");
+                    System.out.println("[1] Hinsetzen\n[2] Rausgehen");
+                    System.out.println("--------------------");
+                    m = sc.nextInt();
+                    if (m == 1) {
+                        hour++; 
+                        System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde."); 
+                        wait(1000);
+                        System.out.println("Die Schulklingel laeutet und alle verlassen den Raum.");
+                        hour = 13;
+                        min = 5;
+                        return;
+                    }
+                    else if (m == 2) {
+                        return;
+                    }
+                } else {
+                    System.out.println("Der Raum ist leer.");
+                }
+            }
+            else if(m == 3) {
+                min = min + 2;
+                if (hour == 9 && min <= 25) {
+                    System.out.println("Der Raum ist voll mit Schuelern. Alle drehen sich zu dir um.");
+                    System.out.println("____________________");
+                    System.out.println("[1] Hinsetzen\n[2] Rausgehen");
+                    System.out.println("--------------------");
+                    m = sc.nextInt();
+                    if (m == 1) {
+                        hour++; 
+                        System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde."); 
+                        wait(1000);
+                        System.out.println("Die Schulklingel laeutet und alle verlassen den Raum.");
+                        hour = 11;
+                        min = 15;
+                        return;
+                    }
+                    else if (m == 2) {
+                        return;
+                    }
+                } else {
+                    System.out.println("Der Raum ist leer.");
+                }
+            }
+            else if(m == 4) {
+                min = min + 2;
+                if (hour == 11 && min <= 35 || min >= 15) {
+                    System.out.println("Der Raum ist voll mit Schuelern. Alle drehen sich zu dir um.");
+                    System.out.println("____________________");
+                    System.out.println("[1] Hinsetzen\n[2] Rausgehen");
+                    System.out.println("--------------------");
+                    m = sc.nextInt();
+                    if (m == 1) {
+                        hour++; 
+                        System.out.println("Du setzt dich hin und bleibst dort fuer den Rest der Stunde."); 
+                        wait(1000);
+                        System.out.println("Die Schulklingel laeutet und alle verlassen den Raum.");
+                        hour = 13;
+                        min = 5;
+                        return;
+                    }
+                    else if (m == 2) {
+                        return;
+                    }
+                } else {
+                    System.out.println("Der Raum ist leer.");
+                }
+            }
+            else if (m == 9) {statCheck();} 
         }
         else if (level == "ug") {
-            System.out.println("[1] Treppenhaus (2)\n[2] In den Kunstraum (2)\n[3] In die Instrumentekammer (2)\n[4] Hinter die Bühne (2)");
+            System.out.println("[1] Treppenhaus (2)\n[2] In den Kunstraum (2)\n[3] In die Instrumentekammer (2)\n[4] Hinter die Bühne (2)\n[9] Deine Statistiken");
             System.out.println("--------------------");
             m = sc.nextInt();
             System.out.println("--------------------");
@@ -251,11 +322,11 @@ public class BanderSnatch {
                         return;
                     }    
                 }
-                
             }
+            else if (m == 9) {statCheck();} 
         }
         else if (level == "k") {
-            System.out.println("[1] Treppenhaus\n[2] Den hellgrauen Kasten untersuchen\n[3] Die linke Tuer oeffnen\n[4] Weiter rein laufen");
+            System.out.println("[1] Treppenhaus\n[2] Den hellgrauen Kasten untersuchen\n[3] Die linke Tuer oeffnen\n[4] Weiter rein laufen\n[9] Deine Statistiken");
             System.out.println("--------------------");
             m = sc.nextInt();
             System.out.println("--------------------");
@@ -269,9 +340,10 @@ public class BanderSnatch {
                 backrooms();
             }
             else if(m == 4) {actionsDeepCellar();}
+            else if (m == 9) {statCheck();} 
         }
         else if (level == "bb") {
-            System.out.println("[1] Etwas lesen\n[2] Tiefer in die Bibliothek gehen\n[3] Zuereck");
+            System.out.println("[1] Etwas lesen\n[2] Tiefer in die Bibliothek gehen\n[3] Zuereck\n[9] Deine Statistiken");
             System.out.println("--------------------");
             m = sc.nextInt();
             System.out.println("--------------------");
@@ -317,6 +389,7 @@ public class BanderSnatch {
             else if (m == 3) {
                 level = "eg";
             }
+            else if (m == 9) {statCheck();} 
         }
     }
 
@@ -439,7 +512,6 @@ public class BanderSnatch {
                     wooziness += Math.random() * 11 + 30;
                     stress -= Math.random() * 11 + 10;
                     hp -= 5;
-                    System.out.println(wooziness);
                 }
             } while (m != 3);
         }
@@ -598,7 +670,7 @@ public class BanderSnatch {
         if (hour == 22) {
             day++; level = "eg"; wooziness = 0; hour = 7; min = 0; fatigue = 0;
             System.out.println("********************************************************************************");
-            System.out.println("Es ist spät und du gehst schlafen.");
+            System.out.println("Es ist sp癖t und du gehst schlafen.");
             System.out.println("Es ist früher Morgen und du begibst dich zur Schule.");
             System.out.println("********************************************************************************");
             return true; 
@@ -626,22 +698,22 @@ public class BanderSnatch {
         wait(500);
         clear();
         System.out.println("CO R UPT T ED");
-        System.out.println("ERRäR");
+        System.out.println("ERR癖R");
         wait(500);
-        System.out.println("äääääää");
+        System.out.println("癖癖癖癖癖癖癖");
         wait(500);
         clear();
-        System.out.println("dU bäST IN BääkääOää");
-        System.out.println("ääääääääääääääääääääääääääääääääääääääääääääääääääääää");
-        System.out.println("SYSTEM CäRRUPTED");
+        System.out.println("dU b癖ST IN B癖癖k癖癖O癖癖");
+        System.out.println("癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖");
+        System.out.println("SYSTEM C癖RRUPTED");
         for (int i = 0; i<101; i++) {
-            System.out.println(i + "% äOAäääG ää äääääääääää");
-            System.out.println("asägäöläsdä");
-            System.out.println("äääääääääääääääää");
+            System.out.println(i + "% 癖OA癖癖癖G 癖癖 癖癖癖癖癖癖癖癖癖癖癖");
+            System.out.println("as癖g癖öl癖sd癖");
+            System.out.println("癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖");
         }
         String m = sc.next();
         while (m != "cd ..") {
-                System.out.println("WäITING FOR UäER INPUT");
+                System.out.println("W癖ITING FOR U癖ER INPUT");
                 m = sc.next();
                 wait(500);
         }
