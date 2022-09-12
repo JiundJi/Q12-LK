@@ -23,7 +23,9 @@ public class BanderSnatch {
     public static int bookID = 0; // bookID of the last book
     public static String bookOpt = ""; // for output
     public static boolean hasMouse = false;
+    public static boolean hasGivenTeacher = false;
     public static boolean hasReadBook = false;
+    public static boolean hasToldTeacher = false;
     public static boolean hasPattedFox = false;
 
     public static Scanner sc = new Scanner(System.in); 
@@ -72,6 +74,8 @@ public class BanderSnatch {
 
     public static void status() {                                                                                       //! STATUS
         System.out.println("\n\n\n");
+        woozinessCheck();
+        fatigueCheck();
         System.out.println("***************************************************");                                                 
         System.out.println("|| Du bist " + levelCheck() + ". Es ist momentan " + time() + " Uhr.");
         System.out.println("|| Du fuehlst dich " + fatigueCheck());                                                  //! no checking needed
@@ -79,6 +83,20 @@ public class BanderSnatch {
             System.out.println("Du bist " + woozinessCheck());
         }
         System.out.println("***************************************************");                                                   
+    }
+
+    public static void statCheck() {
+        System.out.println("HP: " + hp);
+        System.out.println("Deutschkenntnisse: " + ger);
+        System.out.println("Englischkenntnisse: " + eng);
+        System.out.println("Biologiekenntnisse: " + biology);
+        System.out.println("Physikkenntnisse: " + physics);
+        System.out.println("Kenntnisse in Philosophie: " + philosophy);
+        System.out.println("Kenntnisse in Darstellendes Spiel: " + acting);
+        System.out.println("Du bist zu " + stress + "% gestresst.");
+        if (hasMouse) {
+            System.out.println("Du hast eine Maus.");
+        }
     }
 
     public static void actionsSchool() {                                                                                //! ACTIONS AT SCHOOL
@@ -130,6 +148,7 @@ public class BanderSnatch {
                             stress -= 15;
                             hp += 10;
                         }
+                    wait(2500);
                     } else {
                         System.out.println("Drauszen stehen ein paar Schueler rum. Es gibt nichts interessantes.");
                         System.out.println("____________________");
@@ -143,7 +162,7 @@ public class BanderSnatch {
             }
             else if (m == 3) {                                                                                          //! [3]
                 min = min + 2;
-                if (hour <= 11 && min <= 35) {
+                if (hour == 11 && min <= 35 || min >= 15) {
                     System.out.println("Der Raum ist voll mit Schuelern. Alle drehen sich zu dir um.");
                     System.out.println("____________________");
                     System.out.println("[1] Hinsetzen\n[2] Rausgehen");
@@ -166,7 +185,7 @@ public class BanderSnatch {
                 }
             }
             else if (m == 4) {                                                                                          //! [4]
-                if (hour <= 7 && min <= 55) {
+                if (hour == 7 && min <= 55) {
                         System.out.println("Schueler setzen sich hin bevor die Stunde anfaengt.");
                         System.out.println("____________________");
                         System.out.println("[1] Hinsetzen\n[2] Raum verlassen");
@@ -202,7 +221,38 @@ public class BanderSnatch {
             if (m == 1) {actionsTreppe();}
             else if(m == 2) {}
             else if(m == 3) {}
-            else if(m == 4) {}
+            else if(m == 4) {
+                if (hasToldTeacher) {
+                    System.out.println("Die Theater-AG ist im Raum.");
+                    do {
+                        System.out.println("____________________");
+                        System.out.println("[1] Zurueck");
+                        System.out.println("--------------------");
+                        m = sc.nextInt();
+                        System.out.println("--------------------");    
+                    } while(m != 1);
+                    return;
+                } else {
+                    System.out.println("Ein Lehrer steht im Raum.");
+                    System.out.println("'Sein oder nicht sein? Nicht sein oder sein?'");
+                    if (hasReadBook) {
+                        System.out.println("Du erzaehlst dem Lehrer was du im Buch gelesen hast.");
+                        hasReadBook = false;
+                        System.out.println("");
+                    }
+                    else {
+                        do {
+                        System.out.println("____________________");
+                        System.out.println("[1] Zurueck");
+                        System.out.println("--------------------");
+                        m = sc.nextInt();
+                        System.out.println("--------------------");    
+                        } while(m != 1);
+                        return;
+                    }    
+                }
+                
+            }
         }
         else if (level == "k") {
             System.out.println("[1] Treppenhaus\n[2] Den hellgrauen Kasten untersuchen\n[3] Die linke Tuer oeffnen\n[4] Weiter rein laufen");
@@ -236,7 +286,7 @@ public class BanderSnatch {
                 System.out.println("Du findest einen Computer und eine Tuer.");
                 System.out.println("____________________");
                 do{
-                    System.out.println("[1] Zum Computer\n[2] Zur Tuer \n [3] Zurueck");
+                    System.out.println("[1] Zum Computer (1)\n[2] Zur Tuer (1) \n [3] Zurueck");
                     System.out.println("--------------------");
                     m = sc.nextInt();
                     System.out.println("--------------------");
@@ -283,7 +333,7 @@ public class BanderSnatch {
             else if (bookID == 4) {stress += 5; fatigue++; ger += 10; physics += 25;}
             else if (bookID == 5) {stress += 5; fatigue++; ger += 5; math += 10;}
             else if (bookID == 6) {stress ++; fatigue++; ger += 20; philosophy += 30;}
-            else if (bookID == 7) {stress -= 10; fatigue++; ger += 10; acting += 20;}
+            else if (bookID == 7) {stress -= 10; fatigue++; ger += 10; acting += 20; hasReadBook = true;}
             else if (bookID == 8) {stress++; fatigue++; ger += 20; philosophy += 20;}
             else if (bookID == 9) {stress++; fatigue++; ger += 5; philosophy += 5;}
             else if (bookID == 10) {stress -= 10; fatigue++; ger += 10; acting += 10;}
@@ -325,7 +375,6 @@ public class BanderSnatch {
         System.out.println("--------------------");
         m = sc.nextInt();
         System.out.println("--------------------");
-
         if (m == 1) {return;}
         else if(m == 2) {
             System.out.println("Diese Tuer ist verschlossen.");
@@ -374,6 +423,8 @@ public class BanderSnatch {
         }
         else if(m == 4) {  
             do {
+                woozinessCheck();
+                fatigueCheck();
                 System.out.println("Du findest einen Raum vollgestellt mit Bier.");
                 System.out.println("____________________");
                 System.out.println("[1] Eins trinken\n[2] Ein paar trinken \n[3] Verlassen");
@@ -388,6 +439,7 @@ public class BanderSnatch {
                     wooziness += Math.random() * 11 + 30;
                     stress -= Math.random() * 11 + 10;
                     hp -= 5;
+                    System.out.println(wooziness);
                 }
             } while (m != 3);
         }
@@ -466,17 +518,17 @@ public class BanderSnatch {
             stress--;
             bladder++;
         }
-        else if (wooziness > 30) {
+        else if (wooziness >= 30 && wooziness < 50) {
             fat = "etwas angetrunken.";
             stress -= 5;
             bladder += 2;
         }
-        else if (wooziness > 50) {
+        else if (wooziness >= 50 && wooziness < 80) {
             fat = "ziemlich behaemmert.";
             stress -= 10;
             bladder += 3;
         }
-        else if (wooziness > 80) {
+        else if (wooziness >= 80  && wooziness < 100) {
             fat = "sturzbesoffen.";
             stress -= 20;
             bladder += 4;
