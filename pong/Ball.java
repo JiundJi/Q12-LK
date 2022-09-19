@@ -10,6 +10,13 @@ public class Ball{
     public int getY () {
         return posY;
     }
+    public void setX (int n) {
+        posX += n;
+    }
+    public void setY (int n) {
+        posY += n;
+    }
+
     public int getDirection() {
         return direction;
     }
