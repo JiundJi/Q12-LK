@@ -2,62 +2,36 @@ import java.util.Scanner;
 import java.util.concurrent.*;
 
 public class BanderSnatch {
-    public static String level = "eg";
-    public static int wooziness = 0;
-    public static int hour = 7;
-    public static int min = 0;
-    public static int fatigue = 0;
-    public static int day = 1;
-    public static int hp = 100;
-    public static int stress = 0;
-    public static int bladder = 0;
-    public static int philosophy = 0;
-    public static int acting = 0;
-    public static int math = 0;
-    public static int ger = 0;
-    public static int eng = 0;
-    public static int biology = 0;
-    public static int physics = 0;
-    public static String [][] book = new String[1][4];
-    public static int [] pick = new int[4]; //3 picked books
-    public static int bookID = 0; // bookID of the last book
-    public static String bookOpt = ""; // for output
-    public static boolean hasMouse = false;
-    public static boolean hasGivenTeacher = false;
-    public static boolean hasReadBook = false;
-    public static boolean hasToldTeacher = false;
-    public static boolean hasPattedFox = false;
+    Stats currentPlayer = new Stats();
+    public String [][] book = new String[1][4];
+    public int [] pick = new int[4]; //3 picked books
+    public int bookID = 0; // bookID of the last book
+    public String bookOpt = ""; // for output
+    public boolean hasMouse = false;
+    public boolean hasGivenTeacher = false;
+    public boolean hasReadBook = false;
+    public boolean hasToldTeacher = false;
+    public boolean hasPattedFox = false;
 
-    public static Scanner sc = new Scanner(System.in); 
-    public static void wait(int n) {
+    public Scanner sc = new Scanner(System.in); 
+    private void wait(int n) {
         try {
             TimeUnit.MILLISECONDS.sleep(n);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    public static void resetStats() {
-        level = "eg";
-        wooziness = 0;
-        hour = 7;
-        min = 0;
-        fatigue = 0;
-        day = 1;
-        hp = 100;
-        stress = 0;
-        bladder = 0;
-        hasMouse = false;
-        hasReadBook = false;
-        hasPattedFox = false;
-    }
-    public static void clear() {
+    public void clear() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
-    public static void main(String[] args) {
+    public void main(String[] args) {
         game();
     }
 
-    public static void game() {
+    public void game() {
+
+        System.out.println("");
+
         while (true) {
             while (!schoolEnd()) {
                 status();
@@ -72,7 +46,7 @@ public class BanderSnatch {
         }
     }
 
-    public static void status() {                                                                                       //! STATUS
+    public void status() {                                                                                       //! STATUS
         System.out.println("\n\n\n");
         woozinessCheck();
         fatigueCheck();
@@ -85,7 +59,7 @@ public class BanderSnatch {
         System.out.println("***************************************************");                                                   
     }
 
-    public static void statCheck() {
+    public void statCheck() {
         System.out.println("HP: " + hp);
         System.out.println("Deutschkenntnisse: " + ger);
         System.out.println("Englischkenntnisse: " + eng);
@@ -99,7 +73,7 @@ public class BanderSnatch {
         }
     }
 
-    public static void actionsSchool() {                                                                                //! ACTIONS AT SCHOOL
+    public void actionsSchool() {                                                                                //! ACTIONS AT SCHOOL
         int m;
         System.out.println("Was moechtest du tun?");
         System.out.println("____________________");
@@ -393,7 +367,7 @@ public class BanderSnatch {
         }
     }
 
-    public static void bookReward(int n) {
+    public void bookReward(int n) {
         for (int i = 1; i<4; i++) {
             if (n == i) {
                 bookID = pick[n];
@@ -421,7 +395,7 @@ public class BanderSnatch {
             else if (bookID == 19) {stress++; fatigue++; eng += 25;}
     }
 
-    public static String randomBook() {
+    public String randomBook() {
         bookOpt = "";
         double rndm = 0;
         for (int i = 1; i<4; i++) {
@@ -435,11 +409,11 @@ public class BanderSnatch {
         return bookOpt;
     }
 
-    public static void actionsHome() {                                                                                  //! ACTIONS AT HOME
+    public void actionsHome() {                                                                                  //! ACTIONS AT HOME
 
     }
 
-    public static void actionsDeepCellar() {                                                                            //! ACTIONS IN CELLAR
+    public void actionsDeepCellar() {                                                                            //! ACTIONS IN CELLAR
         int m;
         status();
         System.out.println("Was moechtest du tun?");
@@ -517,7 +491,7 @@ public class BanderSnatch {
         }
     }
 
-    public static void actionsTreppe() {                                                                                //! STAIRCASE
+    public void actionsTreppe() {                                                                                //! STAIRCASE
         int m;
         if (level == "eg") {
             do {
@@ -559,7 +533,7 @@ public class BanderSnatch {
         }
     }
 
-    public static String fatigueCheck() {
+    public String fatigueCheck() {
         if (stress > 80) {
             fatigue += 20;
         }
@@ -583,7 +557,7 @@ public class BanderSnatch {
         return fat;
     }
     
-    public static String woozinessCheck() {
+    public String woozinessCheck() {
         String fat = "";
         if (wooziness < 30) {
             fat = "waermer als sonst.";
@@ -623,7 +597,7 @@ public class BanderSnatch {
         return fat;
     }
 
-    public static String levelCheck() {
+    public String levelCheck() {
         String fat = "";
 
         if (level == "k") {
@@ -647,7 +621,7 @@ public class BanderSnatch {
         return fat;
     }
     
-    public static String time() {
+    public String time() {
         String t = "";
         if (min >= 60) {
             min = min - 60;
@@ -657,7 +631,7 @@ public class BanderSnatch {
         return t;
     }
     
-    public static boolean schoolEnd() {
+    public boolean schoolEnd() {
         if (hour == 17 && min == 15) {
             System.out.println("Die Schule ist für heute vorbei, deswegen gehst du nach Hause."); 
             return true; 
@@ -666,7 +640,7 @@ public class BanderSnatch {
         }
     }
     
-    public static boolean homeEnd() {
+    public boolean homeEnd() {
         if (hour == 22) {
             day++; level = "eg"; wooziness = 0; hour = 7; min = 0; fatigue = 0;
             System.out.println("********************************************************************************");
@@ -679,7 +653,7 @@ public class BanderSnatch {
         }
     }
 
-    public static void tod() {
+    public void tod() {
         System.out.println("Du bist gestorben.");
         wait(2000);
         System.out.println("Moechtest du nochmal spielen? \n[1] Ja [2] Nein \n___________________________");
@@ -691,7 +665,7 @@ public class BanderSnatch {
         if (m == 2) {System.exit(0);}
     }
 
-    public static void backrooms() {
+    public void backrooms() {
         clear();
         System.out.println("."); wait(500); clear(); System.out.println(".."); wait(500); clear(); System.out.println("..."); wait(1000);
         System.out.println("$CORRUPT");
@@ -719,7 +693,7 @@ public class BanderSnatch {
         }
     }
 
-    public static String bookName[] = {
+    public String bookName[] = {
     /*0 */    "Sofies Welt",
     /*1 */    "Das Grosze Woerterbuch der deutschen Sprache",
     /*2 */    "Die Kaenguru Chroniken",
