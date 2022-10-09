@@ -3,6 +3,7 @@ import java.util.concurrent.*;
 
 public class BanderSnatch {
     public Stats currentPlayer;
+    public Books books;
     public String [][] book = new String[1][4];
     public int [] pick = new int[4]; //3 picked books
     public int bookID = 0; // bookID of the last book
@@ -37,7 +38,7 @@ public class BanderSnatch {
             while (!homeEnd()) {
                 status();
                 wait(200);
-                actionsHome();
+                
             }
         }
     }
@@ -320,7 +321,7 @@ public class BanderSnatch {
             if (m == 1) {
                 currentPlayer.addMin(1);
                 System.out.println("Du gehst zu den Buecherregalen.");
-                System.out.println(randomBook());
+                System.out.println(books.printOptions());
                 m = sc.nextInt();
                 bookReward(m);
             }
@@ -369,16 +370,16 @@ public class BanderSnatch {
                 bookID = pick[n];
             }
         }
-            if (bookID == 0) {currentPlayer.addStress(-5); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addPhilo(25);}
-            else if (bookID == 1) {currentPlayer.addStress(-5); currentPlayer.addFatigue(1); currentPlayer.addGer(25);}
-            else if (bookID == 2) {currentPlayer.addStress(-20); currentPlayer.addFatigue(-10); currentPlayer.set("hp", 100);}
-            else if (bookID == 3) {currentPlayer.addStress(5); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addBiology(25);}
-            else if (bookID == 4) {currentPlayer.addStress(5); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addPhysics(25);}
-            else if (bookID == 5) {currentPlayer.addStress(5); currentPlayer.addFatigue(1); currentPlayer.addGer(5); currentPlayer.addMath(10);}
-            else if (bookID == 6) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(20); currentPlayer.addPhilo(30);}
-            else if (bookID == 7) {currentPlayer.addStress(-10); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addActing(20); currentPlayer.hasReadBook = true;}
-            else if (bookID == 8) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(20); currentPlayer.addPhilo(20);}
-            else if (bookID == 9) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(5); currentPlayer.addPhilo(5);}
+            if      (bookID == 0)  {currentPlayer.addStress(-5); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addPhilo(25);}
+            else if (bookID == 1)  {currentPlayer.addStress(-5); currentPlayer.addFatigue(1); currentPlayer.addGer(25);}
+            else if (bookID == 2)  {currentPlayer.addStress(-20); currentPlayer.addFatigue(-10); currentPlayer.set("hp", 100);}
+            else if (bookID == 3)  {currentPlayer.addStress(5); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addBiology(25);}
+            else if (bookID == 4)  {currentPlayer.addStress(5); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addPhysics(25);}
+            else if (bookID == 5)  {currentPlayer.addStress(5); currentPlayer.addFatigue(1); currentPlayer.addGer(5); currentPlayer.addMath(10);}
+            else if (bookID == 6)  {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(20); currentPlayer.addPhilo(30);}
+            else if (bookID == 7)  {currentPlayer.addStress(-10); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addActing(20); currentPlayer.hasReadBook = true;}
+            else if (bookID == 8)  {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(20); currentPlayer.addPhilo(20);}
+            else if (bookID == 9)  {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(5); currentPlayer.addPhilo(5);}
             else if (bookID == 10) {currentPlayer.addStress(-10); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addActing(10);}
             else if (bookID == 11) {currentPlayer.addStress(-10); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addPhilo(10);}
             else if (bookID == 12) {currentPlayer.addStress(-5); currentPlayer.addFatigue(1); currentPlayer.addGer(15); currentPlayer.addPhilo(10);}
@@ -389,24 +390,6 @@ public class BanderSnatch {
             else if (bookID == 17) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addEng(25);}
             else if (bookID == 18) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addEng(25);}
             else if (bookID == 19) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addEng(25);}
-    }
-
-    public String randomBook() {
-        bookOpt = "";
-        double rndm = 0;
-        for (int i = 1; i<4; i++) {
-            do {
-                rndm = Math.random() * 20;
-            } while((int) rndm == pick[1] || (int) rndm == pick[2]);
-            pick[i] = (int) rndm;
-
-            System.out.println("[" + i + "] " + bookName[(int) rndm]);
-        }
-        return bookOpt;
-    }
-
-    public void actionsHome() {                                                                                  //! ACTIONS AT HOME
-
     }
 
     public void actionsDeepCellar() {                                                                            //! ACTIONS IN CELLAR
@@ -691,26 +674,4 @@ public class BanderSnatch {
         }
     }
 
-    public String bookName[] = {
-    /*0 */    "Sofies Welt",
-    /*1 */    "Das Grosze Woerterbuch der deutschen Sprache",
-    /*2 */    "Die KacurrentPlayer.getEnguru Chroniken",
-    /*3 */    "Lexikon der Biologie",
-    /*4 */    "Ups and Downs - Einfuehrung in Quantenphysik",
-    /*5 */    "Algebra 1",
-    /*6 */    "Kritik der reinen Vernunft",
-    /*7 */    "Was ist sein? Was ist nicht sein?",
-    /*8 */    "Gott ist tot",
-    /*9 */    "Die Bibel",
-    /*10 */   "Romeo und Julia",
-    /*11 */   "Emile oder ueber die Erziehung",
-    /*12 */   "Also sprach Zarathustra",
-    /*13 */   "Das grosze Buch der Witze",
-    /*14 */   "Nichts, rein gar nichts: Das Buch fuer alle, die sich nichts wuenschen",
-    /*15 */   "Algebra 2",
-    /*16 */   "Faith and Misery",
-    /*17 */   "With the lights out, its less dancurrentPlayer.getGerous",
-    /*18 */   "Leave it alone, Find a home, Go back home",
-    /*19 */   "I did it my way"
-    };
 }
