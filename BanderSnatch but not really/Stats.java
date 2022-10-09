@@ -16,6 +16,11 @@ public class Stats {
     private int eng = 0;
     private int biology = 0;
     private int physics = 0;
+    public boolean hasMouse = false;
+    public boolean hasGivenTeacher = false;
+    public boolean hasReadBook = false;
+    public boolean hasToldTeacher = false;
+    public boolean hasPattedFox = false;
     public Stats(String name) {name = this.name;}
     public void resetAll() {
         name = "";

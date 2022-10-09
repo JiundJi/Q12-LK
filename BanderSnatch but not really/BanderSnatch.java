@@ -2,16 +2,12 @@ import java.util.Scanner;
 import java.util.concurrent.*;
 
 public class BanderSnatch {
-    public Stats currentPlayer = new Stats("test");
+    public Stats currentPlayer;
     public String [][] book = new String[1][4];
     public int [] pick = new int[4]; //3 picked books
     public int bookID = 0; // bookID of the last book
     public String bookOpt = ""; // for output
-    public boolean hasMouse = false;
-    public boolean hasGivenTeacher = false;
-    public boolean hasReadBook = false;
-    public boolean hasToldTeacher = false;
-    public boolean hasPattedFox = false;
+    
 
     public Scanner sc = new Scanner(System.in); 
     private void wait(int n) {
@@ -52,8 +48,8 @@ public class BanderSnatch {
         fatigueCheck();
         System.out.println("***************************************************");                                                 
         System.out.println("|| Du bist " + levelCheck(currentPlayer.getLevel()) + ". Es ist momentan " + time() + " Uhr.");
-        System.out.println("|| Du fuehlst dich " + fatigueCheck());                                                  //! no checking needed
-        if (currentPlayer.getWooziness() > 0) {                                                                                            //! check if 0
+        System.out.println("|| Du fuehlst dich " + fatigueCheck());
+        if (currentPlayer.getWooziness() > 0) {
             System.out.println("|| Du bist " + woozinessCheck());
         }
         System.out.println("***************************************************");                                                   
@@ -68,7 +64,7 @@ public class BanderSnatch {
         System.out.println("Kenntnisse in Philosophie: " + currentPlayer.getPhilo());
         System.out.println("Kenntnisse in Darstellendes Spiel: " + currentPlayer.getActing());
         System.out.println("Du bist zu " + currentPlayer.getStress() + "% gestresst.");
-        if (hasMouse) {
+        if (currentPlayer.hasMouse) {
             System.out.println("Du hast eine Maus.");
         }
     }
@@ -267,7 +263,7 @@ public class BanderSnatch {
             else if(m == 2) {}
             else if(m == 3) {}
             else if(m == 4) {
-                if (hasToldTeacher) {
+                if (currentPlayer.hasToldTeacher) {
                     System.out.println("Die Theater-AG ist im Raum.");
                     do {
                         System.out.println("____________________");
@@ -280,9 +276,9 @@ public class BanderSnatch {
                 } else {
                     System.out.println("Ein Lehrer steht im Raum.");
                     System.out.println("'Sein oder nicht sein? Nicht sein oder sein?'");
-                    if (hasReadBook) {
+                    if (currentPlayer.hasReadBook) {
                         System.out.println("Du erzaehlst dem Lehrer was du im Buch gelesen hast.");
-                        hasReadBook = false;
+                        currentPlayer.hasReadBook = false;
                         System.out.println("");
                     }
                     else {
@@ -380,7 +376,7 @@ public class BanderSnatch {
             else if (bookID == 4) {currentPlayer.addStress(5); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addPhysics(25);}
             else if (bookID == 5) {currentPlayer.addStress(5); currentPlayer.addFatigue(1); currentPlayer.addGer(5); currentPlayer.addMath(10);}
             else if (bookID == 6) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(20); currentPlayer.addPhilo(30);}
-            else if (bookID == 7) {currentPlayer.addStress(-10); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addActing(20); hasReadBook = true;}
+            else if (bookID == 7) {currentPlayer.addStress(-10); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addActing(20); currentPlayer.hasReadBook = true;}
             else if (bookID == 8) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(20); currentPlayer.addPhilo(20);}
             else if (bookID == 9) {currentPlayer.addStress(1); currentPlayer.addFatigue(1); currentPlayer.addGer(5); currentPlayer.addPhilo(5);}
             else if (bookID == 10) {currentPlayer.addStress(-10); currentPlayer.addFatigue(1); currentPlayer.addGer(10); currentPlayer.addActing(10);}
@@ -444,9 +440,9 @@ public class BanderSnatch {
                     System.out.println("Eine Spinne erschreckt dich so sehr, dass du rueckwaerts fliegst und deinen Kopf aufschlaegst.");
                     tod();
                 } else {
-                    if (!hasMouse) {
+                    if (!currentPlayer.hasMouse) {
                         System.out.println("Du findest eine funktionierende Maus und nimmst sie mit.");
-                        hasMouse = true;
+                        currentPlayer.hasMouse = true;
                         actionsDeepCellar();
                     } else {
                         System.out.println("Du hoerst ein currentPlayer.getGeraeusch und versteckst dich hinter der Kiste. Der Hausmeister schaut hinein: 'Ist da jemand?'");
@@ -706,15 +702,15 @@ public class BanderSnatch {
     /*7 */    "Was ist sein? Was ist nicht sein?",
     /*8 */    "Gott ist tot",
     /*9 */    "Die Bibel",
-    /*10 */    "Romeo und Julia",
-    /*11 */    "Emile oder ueber die Erziehung",
-    /*12 */    "Also sprach Zarathustra",
-    /*13 */    "Das grosze Buch der Witze",
-    /*14 */    "Nichts, rein gar nichts: Das Buch fuer alle, die sich nichts wuenschen",
-    /*15 */    "Algebra 2",
-    /*16 */    "Faith and Misery",
-    /*17 */    "With the lights out, its less dancurrentPlayer.getGerous",
-    /*18 */    "Leave it alone, Find a home, Go back home",
-    /*19 */    "I did it my way"
+    /*10 */   "Romeo und Julia",
+    /*11 */   "Emile oder ueber die Erziehung",
+    /*12 */   "Also sprach Zarathustra",
+    /*13 */   "Das grosze Buch der Witze",
+    /*14 */   "Nichts, rein gar nichts: Das Buch fuer alle, die sich nichts wuenschen",
+    /*15 */   "Algebra 2",
+    /*16 */   "Faith and Misery",
+    /*17 */   "With the lights out, its less dancurrentPlayer.getGerous",
+    /*18 */   "Leave it alone, Find a home, Go back home",
+    /*19 */   "I did it my way"
     };
 }
