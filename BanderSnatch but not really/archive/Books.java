@@ -1,3 +1,4 @@
+package archive;
 public class Books {
     private String bookList[] = {
         /*0 */    "Sofies Welt",

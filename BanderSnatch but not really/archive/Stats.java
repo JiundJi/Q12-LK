@@ -1,3 +1,4 @@
+package archive;
 public class Stats {
     private String name = "";
     private String level = "eg";
@@ -61,6 +62,20 @@ public class Stats {
         }
     }
     
+    public void statCheck() {
+        System.out.println("HP: " + getHp());
+        System.out.println("Deutschkenntnisse: " + getGer());
+        System.out.println("Englischkenntnisse: " + getEng());
+        System.out.println("Biologiekenntnisse: " + getBiology());
+        System.out.println("Physikkenntnisse: " + getPhysics());
+        System.out.println("Kenntnisse in Philosophie: " + getPhilo());
+        System.out.println("Kenntnisse in Darstellendes Spiel: " + getActing());
+        System.out.println("Du bist zu " + getStress() + "% gestresst.");
+        if (hasMouse) {
+            System.out.println("Du hast eine Maus.");
+        }
+    }
+
     public String getName() {return name;}
     public String getLevel() {return level;}
     public int getWooziness() {return wooziness;}

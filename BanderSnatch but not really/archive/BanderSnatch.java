@@ -1,8 +1,9 @@
+package archive;
 import java.util.Scanner;
 import java.util.concurrent.*;
 
 public class BanderSnatch {
-    public Stats currentPlayer;
+    public Stats currentPlayer = new Stats("aaaa");
     public Books books;
     public String [][] book = new String[1][4];
     public int [] pick = new int[4]; //3 picked books
@@ -21,15 +22,16 @@ public class BanderSnatch {
     public void clear() {
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
-    public void main(String[] args) {
-        game();
+    public static void main(String[] args) {
+        BanderSnatch Game = new BanderSnatch();
+        
+        Game.start();
     }
 
-    public void game() {
-
+    public void start() {
         System.out.println("");
 
-        while (true) {
+        while (1 == 1) {
             while (!schoolEnd()) {
                 status();
                 wait(200);
@@ -56,19 +58,7 @@ public class BanderSnatch {
         System.out.println("***************************************************");                                                   
     }
 
-    public void statCheck() {
-        System.out.println("HP: " + currentPlayer.getHp());
-        System.out.println("Deutschkenntnisse: " + currentPlayer.getGer());
-        System.out.println("Englischkenntnisse: " + currentPlayer.getEng());
-        System.out.println("Biologiekenntnisse: " + currentPlayer.getBiology());
-        System.out.println("Physikkenntnisse: " + currentPlayer.getPhysics());
-        System.out.println("Kenntnisse in Philosophie: " + currentPlayer.getPhilo());
-        System.out.println("Kenntnisse in Darstellendes Spiel: " + currentPlayer.getActing());
-        System.out.println("Du bist zu " + currentPlayer.getStress() + "% gestresst.");
-        if (currentPlayer.hasMouse) {
-            System.out.println("Du hast eine Maus.");
-        }
-    }
+    
 
     public void actionsSchool() {                                                                                //! ACTIONS AT SCHOOL
         int m;
@@ -173,7 +163,7 @@ public class BanderSnatch {
                     }
                 }
             else if (m == 5) {currentPlayer.setLevel("bb"); currentPlayer.addMin(2);}                                                                  //! [5]
-            else if (m == 9) {statCheck();}                                                                             //! [9]
+            else if (m == 9) {currentPlayer.statCheck();}                                                                             //! [9]
         }
         else if (currentPlayer.getLevel() == "og") {
             System.out.println("[1] Treppenhaus\n[2] In den Biologieraum\n[3] In die Physiksammelung\n[4] In den Chemieraum\n[9] Deine Statistiken");
@@ -253,7 +243,7 @@ public class BanderSnatch {
                     System.out.println("Der Raum ist leer.");
                 }
             }
-            else if (m == 9) {statCheck();} 
+            else if (m == 9) {currentPlayer.statCheck();} 
         }
         else if (currentPlayer.getLevel() == "ug") {
             System.out.println("[1] Treppenhaus (2)\n[2] In den Kunstraum (2)\n[3] In die Instrumentekammer (2)\n[4] Hinter die Bühne (2)\n[9] Deine Statistiken");
@@ -294,7 +284,7 @@ public class BanderSnatch {
                     }    
                 }
             }
-            else if (m == 9) {statCheck();} 
+            else if (m == 9) {currentPlayer.statCheck();} 
         }
         else if (currentPlayer.getLevel() == "k") {
             System.out.println("[1] Treppenhaus\n[2] Den hellgrauen Kasten untersuchen\n[3] Die linke Tuer oeffnen\n[4] Weiter rein laufen\n[9] Deine Statistiken");
@@ -311,7 +301,7 @@ public class BanderSnatch {
                 backrooms();
             }
             else if(m == 4) {actionsDeepCellar();}
-            else if (m == 9) {statCheck();} 
+            else if (m == 9) {currentPlayer.statCheck();} 
         }
         else if (currentPlayer.getLevel() == "bb") {
             System.out.println("[1] Etwas lesen\n[2] Tiefer in die Bibliothek gehen\n[3] Zuereck\n[9] Deine Statistiken");
@@ -360,7 +350,7 @@ public class BanderSnatch {
             else if (m == 3) {
                 currentPlayer.setLevel("eg");
             }
-            else if (m == 9) {statCheck();} 
+            else if (m == 9) {currentPlayer.statCheck();} 
         }
     }
 
@@ -641,7 +631,7 @@ public class BanderSnatch {
         int m = sc.nextInt();
         if (m == 1) {
             currentPlayer.resetAll();
-            game();
+            start();
         }
         if (m == 2) {System.exit(0);}
     }
