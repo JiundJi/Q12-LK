@@ -4,6 +4,9 @@ public class Player {
     public Player(String name) {
         this.name = name;
     }
+    public Player() {
+        this.name = "null";
+    }
     
     private String name = "";
     private String level = "eg";
