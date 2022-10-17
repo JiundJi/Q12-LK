@@ -1,4 +1,4 @@
-//package NIM;
+package NIM;
 public class Streichholzhaufen {
   private int streichholzAnzahl;
   public Streichholzhaufen (int anzahl) {
@@ -11,10 +11,8 @@ public class Streichholzhaufen {
      return streichholzAnzahl;
     }
   
-  public boolean removeStreichholz(int anzahl) {
+  public void removeStreichholz(int anzahl) {
     if (isValidAnzahl(anzahl)) streichholzAnzahl -= anzahl;
-    else return false;
-    return true;
   }
   
   public boolean isEmpty() {
@@ -23,7 +21,7 @@ public class Streichholzhaufen {
   }
 
   public boolean isValidAnzahl(int anzahl) {
-    if (anzahl >= 1 && anzahl <= 3) return true;
+    if (anzahl != null && anzahl >= 1 && anzahl <= 3) return true;
     return false;
   }
 }
