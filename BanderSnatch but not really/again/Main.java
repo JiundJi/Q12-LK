@@ -6,9 +6,10 @@ public class Main {
         Game game = new Game();
 
         game.menu();
-        while (!game.stop()) {
+        do {
             game.start();
-        }
+        } while (!game.stop()); 
+        
         System.exit(0);
     }
 }

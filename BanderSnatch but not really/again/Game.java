@@ -15,13 +15,15 @@ public class Game {
     School school = new School();
 
     public void menu() {
+        do {
             System.out.println(" \n \n--------------------------------");
             System.out.println("| Willkommen bei JiundJi's RPG!");
             System.out.println("| [1] Starten [2] Anleitung");
             System.out.println("-------------------------------- \n");
             input = sc.nextInt();
-        if (input == 1) {return;}
-        else if (input == 2) {intro(); menu();}
+            if (input == 1) {break;}
+            else if (input == 2) {intro(); menu();}
+        } while (input != 1 || input != 2);
     }
 
     public void intro() {
@@ -38,8 +40,19 @@ public class Game {
 
     public void start() {
         do {
-
+            status();
         } while (!player.isDead());
+    }
+
+    private void status() {
+        System.out.println("\n\n\n");
+        System.out.println("***************************************************");                                                 
+        System.out.println("|| Du bist " + player.getLevel() + ". Es ist momentan " + player.getTime() + " Uhr.");
+        System.out.println("|| Du fuehlst dich " + fatigueCheck());
+        if (player.getWooziness() > 0) {
+            System.out.println("|| Du bist " + woozinessCheck());
+        }
+        System.out.println("***************************************************");      
     }
 
     public boolean stop() {
