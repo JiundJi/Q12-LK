@@ -57,6 +57,23 @@ public class Player {
         else if (level == "ug") {return "im Untergeschoss der Schule.";}
         else {return "auf dem Weg.";}
     }
+    
+    private int wooziness;
+    
+    public String woozinessCheck() {
+      if (wooziness <= 30) {
+            return "etwas angetrunken.";
+        } else if (wooziness <= 60) {
+            return "waermer als sonst.";
+        } else {
+            return "randvoll.";
+        }
+    }
+    
+    public boolean isDrunk() {
+      if (wooziness <= 50) return true;
+      else return false;
+    }
 
     public boolean isDead() {
         return false;
