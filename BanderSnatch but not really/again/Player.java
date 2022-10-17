@@ -59,7 +59,6 @@ public class Player {
     }
     
     private int wooziness;
-    
     public String woozinessCheck() {
       if (wooziness <= 30) {
             return "etwas angetrunken.";
