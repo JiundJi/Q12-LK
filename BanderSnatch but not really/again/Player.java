@@ -21,7 +21,7 @@ public class Player {
             case 11: return (String) (day + ".November");
             case 12: return (String) (day + ".Dezember");
         }
-        return "";
+        return "null";
     }
     public void addTime(String unit, int value, boolean switchToSetTime) {
         if (switchToSetTime) {
@@ -56,6 +56,22 @@ public class Player {
         else if (level == "og") {return "im Obergeschoss der Schule.";}
         else if (level == "ug") {return "im Untergeschoss der Schule.";}
         else {return "auf dem Weg.";}
+    }
+    
+    private int wooziness;
+    public String woozinessCheck() {
+      if (wooziness <= 30) {
+            return "etwas angetrunken.";
+        } else if (wooziness <= 60) {
+            return "waermer als sonst.";
+        } else {
+            return "randvoll.";
+        }
+    }
+    
+    public boolean isDrunk() {
+      if (wooziness <= 50) return true;
+      else return false;
     }
 
     public boolean isDead() {
