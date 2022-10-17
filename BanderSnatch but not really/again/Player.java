@@ -21,7 +21,7 @@ public class Player {
             case 11: return (String) (day + ".November");
             case 12: return (String) (day + ".Dezember");
         }
-        return "";
+        return "null";
     }
     public void addTime(String unit, int value, boolean switchToSetTime) {
         if (switchToSetTime) {
