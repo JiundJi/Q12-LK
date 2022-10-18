@@ -1,8 +1,6 @@
-import java.util.concurrent.*;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
+        util util = new util();
         Game game = new Game();
 
         game.menu();

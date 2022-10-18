@@ -50,12 +50,28 @@ public class Player {
         }
     }
     protected String level = "home";
-    public String getLevel() {
-        if (level == "home") {return "zuhause.";}
-        else if (level == "eg") {return "im Erdgeschoss der Schule.";}
-        else if (level == "og") {return "im Obergeschoss der Schule.";}
-        else if (level == "ug") {return "im Untergeschoss der Schule.";}
-        else {return "auf dem Weg.";}
+    public String getLevelDesc() {
+        switch(level) {
+            case "home": return "zuhause.";
+            case "eg": return "im Erdgeschoss der Schule.";
+            case "og": return "im Obergeschoss der Schule.";
+            case "ug": return "im Untergeschoss der Schule.";
+            case "k": return "im Keller der Schule.";
+        }
+        return "auf dem Weg.";
+    }
+    public int getLevel() {
+        switch(level) {
+            case "home": return 4;
+            case "eg": return 0;
+            case "og": return 1;
+            case "ug": return -1;
+            case "k": return -2;
+        }
+        return 3; //* on the way home
+    }
+    public void addLevel(int value) {
+        level += value;
     }
     
     private int wooziness;
@@ -68,7 +84,9 @@ public class Player {
             return "randvoll.";
         }
     }
-    
+    public int getWooziness() {
+        return wooziness;
+    }
     public boolean isDrunk() {
       if (wooziness <= 50) return true;
       else return false;
