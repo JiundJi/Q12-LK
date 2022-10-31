@@ -1,14 +1,6 @@
-import java.util.Scanner;
-import java.util.concurrent.*;
 public class Game {
-    public void wait(int n) {
-        try {
-            TimeUnit.MILLISECONDS.sleep(n);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-    public static Scanner sc = new Scanner(System.in);
+    util util = new util();
+    
     private int input = -1;
     private String stringInput = "null";
     Player player = new Player();
@@ -16,49 +8,83 @@ public class Game {
 
     public void menu() {
         do {
-            System.out.println(" \n \n--------------------------------");
-            System.out.println("| Willkommen bei JiundJi's RPG!");
-            System.out.println("| [1] Starten [2] Anleitung");
-            System.out.println("-------------------------------- \n");
-            input = sc.nextInt();
+            util.println(" \n \n--------------------------------");
+            util.println("| Willkommen bei JiundJi's RPG!");
+            util.println("| [1] Starten [2] Anleitung");
+            util.println("-------------------------------- \n");
+            input = util.sc.nextInt();
             if (input == 1) {break;}
             else if (input == 2) {intro(); menu();}
         } while (input != 1 || input != 2);
     }
 
     public void intro() {
-        System.out.println("--------------------------------");
-        System.out.println("| [1] In den Garten (2)");
-        System.out.println("|  ^        ^        ^");
-        System.out.println("|  |        |        |");
-        System.out.println("|  Auswahl  |        |");
-        System.out.println("|  Beschreibung      |");
-        System.out.println("|  Benoetigte Zeit --|");
-        System.out.println("--------------------------------");
-        wait(2000);
+        util.println("--------------------------------");
+        util.println("| [1] In den Garten (2)");
+        util.println("|  ^        ^        ^");
+        util.println("|  |        |        |");
+        util.println("|  Auswahl  |        |");
+        util.println("|  Beschreibung      |");
+        util.println("|  Benoetigte Zeit --|");
+        util.println("--------------------------------");
+        util.wait(2000);
     }
 
     public void start() {
         do {
             status();
+            action();
         } while (!player.isDead());
     }
 
+    public void action() {
+
+    }
+
     private void status() {
-        System.out.println("\n\n\n");
-        System.out.println("***************************************************");                                                 
-        System.out.println("|| Du bist " + player.getLevel() + ". Es ist momentan " + player.getTime() + " Uhr.");
-        System.out.println("|| Du fuehlst dich " + fatigueCheck());
+        util.println("\n\n\n");
+        util.println("***************************************************");                                                 
+        util.println("|| Du bist " + player.getLevelDesc() + ". Es ist momentan " + player.getTime() + " Uhr.");
+        util.println("|| Du fuehlst dich " + player.fatigueCheck());
         if (player.getWooziness() > 0) {
-            System.out.println("|| Du bist " + woozinessCheck());
+            util.println("|| Du bist " + player.woozinessCheck());
         }
-        System.out.println("***************************************************");      
+        util.println("|| [9] Deine Statistiken");
+        util.println("***************************************************");      
     }
 
     public boolean stop() {
-        System.out.println("Moechtest du nochmal spielen? (y/n)");
-        stringInput = sc.nextLine();
+        util.println("Moechtest du nochmal spielen? (y/n)");
+        stringInput = util.sc.nextLine();
         if (stringInput == "y" || stringInput == "Y") {return false;}
-        else return true;
+        else {return true;}
+    }
+
+    public void backrooms() {
+        util.clear();
+        System.out.println("."); util.wait(500); util.clear(); System.out.println(".."); util.wait(500); util.clear(); System.out.println("..."); util.wait(1000);
+        System.out.println("$CORRUPT");
+        util.wait(500);
+        util.clear();
+        System.out.println("CO R UPT T ED");
+        System.out.println("ERR癖R");
+        util.wait(500);
+        System.out.println("癖癖癖癖癖癖癖");
+        util.wait(500);
+        util.clear();
+        System.out.println("dU b癖ST IN B癖癖k癖癖O癖癖");
+        System.out.println("癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖");
+        System.out.println("SYSTEM C癖RRUPTED");
+        for (int i = 0; i<101; i++) {
+            System.out.println(i + "% 癖OA癖癖癖G 癖癖 癖癖癖癖癖癖癖癖癖癖癖");
+            System.out.println("as癖g癖öl癖sd癖");
+            System.out.println("癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖癖");
+        }
+        String m = util.sc.next();
+        while (m != "cd ..") {
+                System.out.println("W癖ITING FOR U癖ER INPUT");
+                m = util.sc.next();
+                util.wait(500);
+        }
     }
 }
