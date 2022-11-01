@@ -1,4 +1,4 @@
-public class Library extends Game{
+public class Library extends School{
 
     public void enterLibrary() {
         int m;
