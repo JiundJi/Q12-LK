@@ -1,0 +1,11 @@
+package nvm;
+
+public class School {
+    Teacher teacherList[];
+    Room roomList[] = new Room[10];
+    
+    teacherList[0] = new GerTeacher(entrance, "Frau Hanno");
+    teacherList[1] = new MathTeacher(entrance, "Frau Beyer");
+    
+
+}
