@@ -2,7 +2,7 @@ package nvm;
 
 public class Teacher {
     Util util = new Util();
-    private int xp = 0;
+    protected int xp = 0;
     private String name = "-1";
     private Room room;
 
@@ -15,7 +15,7 @@ public class Teacher {
     public void setXp(int value) {xp += value;}
     public void discuss() {
         util.println("yes?");
-        if((int) (Math.random * 101) < 50) {
+        if((int) (Math.random() * 101) < 50) {
             xp += 5;
             util.println("uwu");
         } else {
