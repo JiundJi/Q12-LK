@@ -17,9 +17,10 @@ public class Vokabelliste extends JDialog {
   private Canvas canvas1 = new Canvas();
   private JTextField jTextField1 = new JTextField();
   private JButton bZurueck = new JButton();
+  private Vokabelkasten vk;
   // Ende Attribute
   
-  public Vokabelliste(JFrame owner, boolean modal) { 
+  public Vokabelliste(JFrame owner, boolean modal, Vokabelkasten vk) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -50,7 +51,7 @@ public class Vokabelliste extends JDialog {
     jTextField1.setBounds(93, 115, 374, 228);
     cp.add(jTextField1);
     bZurueck.setBounds(327, 408, 203, 33);
-    bZurueck.setText("Zurück");
+    bZurueck.setText("Zurueck");
     bZurueck.setMargin(new Insets(2, 2, 2, 2));
     bZurueck.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -58,15 +59,19 @@ public class Vokabelliste extends JDialog {
       }
     });
     cp.add(bZurueck);
+    for (int i=0; i<vk.getVokabelanzahl();i++) {
+      jTextField1.setText(vk.vokabelfeld[i].getDeutsch() + " = " + vk.vokabelfeld[i].getEnglisch() + "\n");
+    }
     // Ende Komponenten
     
+    this.vk = vk;
     setResizable(false);
     setVisible(true);
   } // end of public Vokabelliste
   
   // Anfang Methoden
   public void bZurueck_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einfuegen
     this.dispose();
   } // end of bZurueck_ActionPerformed
 
