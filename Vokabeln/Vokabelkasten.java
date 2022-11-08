@@ -1,0 +1,4 @@
+lpublic cass Vokabelkasten {
+  
+  
+}
