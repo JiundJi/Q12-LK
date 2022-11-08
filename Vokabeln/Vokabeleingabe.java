@@ -1,4 +1,4 @@
-import java.awt.*;
+vkastimport java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -21,9 +21,10 @@ public class Vokabeleingabe extends JDialog {
   private JTextField jTextField2 = new JTextField();
   private JButton bSpeichern = new JButton();
   private JButton bZurueck = new JButton();
+  private Vokabelkasten vk;
   // Ende Attribute
   
-  public Vokabeleingabe(JFrame owner, boolean modal) { 
+  public Vokabeleingabe(JFrame owner, boolean modal, Vokabelken vk) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -39,6 +40,7 @@ public class Vokabeleingabe extends JDialog {
     cp.setLayout(null);
     // Anfang Komponenten
     
+    this. = vk;
     canvas1.setBounds(22, 64, 270, 250);
     canvas1.setBackground(Color.GRAY);
     cp.add(canvas1);
@@ -78,7 +80,7 @@ public class Vokabeleingabe extends JDialog {
     });
     cp.add(bSpeichern);
     bZurueck.setBounds(174, 335, 123, 33);
-    bZurueck.setText("Zurück");
+    bZurueck.setText("Zurï¿½ck");
     bZurueck.setMargin(new Insets(2, 2, 2, 2));
     bZurueck.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -94,12 +96,12 @@ public class Vokabeleingabe extends JDialog {
   
   // Anfang Methoden
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einfï¿½gen
     
   } // end of bSpeichern_ActionPerformed
 
   public void bZurueck_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einfï¿½gen
     
   } // end of bZurueck_ActionPerformed
 
