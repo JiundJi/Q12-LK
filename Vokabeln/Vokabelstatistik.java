@@ -16,11 +16,12 @@ public class Vokabelstatistik extends JDialog {
   private JLabel lStatistik = new JLabel();
   private Canvas canvas1 = new Canvas();
   private JTextArea jTextArea1 = new JTextArea("");
-    private JScrollPane jTextArea1ScrollPane = new JScrollPane(jTextArea1);
+  private JScrollPane jTextArea1ScrollPane = new JScrollPane(jTextArea1);
   private JButton bZurueck = new JButton();
+  private Vokabelkasten vk;
   // Ende Attribute
   
-  public Vokabelstatistik(JFrame owner, boolean modal) { 
+  public Vokabelstatistik(JFrame owner, boolean modal, Vokabelkasten vk) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -49,7 +50,7 @@ public class Vokabelstatistik extends JDialog {
     jTextArea1ScrollPane.setBounds(38, 64, 264, 100);
     cp.add(jTextArea1ScrollPane);
     bZurueck.setBounds(187, 186, 123, 25);
-    bZurueck.setText("Zurück");
+    bZurueck.setText("Zurï¿½ck");
     bZurueck.setMargin(new Insets(2, 2, 2, 2));
     bZurueck.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -59,13 +60,14 @@ public class Vokabelstatistik extends JDialog {
     cp.add(bZurueck);
     // Ende Komponenten
     
+    this.vk = vk;
     setResizable(false);
     setVisible(true);
   } // end of public Vokabelstatistik
   
   // Anfang Methoden
   public void bZurueck_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einfï¿½gen
     this.dispose();
   } // end of bZurueck_ActionPerformed
 

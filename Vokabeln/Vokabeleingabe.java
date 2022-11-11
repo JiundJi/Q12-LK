@@ -1,4 +1,4 @@
-vkastimport java.awt.*;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -24,7 +24,7 @@ public class Vokabeleingabe extends JDialog {
   private Vokabelkasten vk;
   // Ende Attribute
   
-  public Vokabeleingabe(JFrame owner, boolean modal, Vokabelken vk) { 
+  public Vokabeleingabe(JFrame owner, boolean modal, Vokabelkasten vk) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -40,7 +40,7 @@ public class Vokabeleingabe extends JDialog {
     cp.setLayout(null);
     // Anfang Komponenten
     
-    this. = vk;
+    this.vk = vk;
     canvas1.setBounds(22, 64, 270, 250);
     canvas1.setBackground(Color.GRAY);
     cp.add(canvas1);
@@ -96,13 +96,15 @@ public class Vokabeleingabe extends JDialog {
   
   // Anfang Methoden
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einf�gen
-    
+    // TODO hier Quelltext einfuegen
+    if (!vk.addVokabel(new Vokabel(jTextArea2.getText(), jTextArea1.getText()))){
+      System.out.println("Error");
+    }
   } // end of bSpeichern_ActionPerformed
 
   public void bZurueck_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einf�gen
-    
+    // TODO hier Quelltext einfuegen
+    this.dispose();
   } // end of bZurueck_ActionPerformed
 
   // Ende Methoden
