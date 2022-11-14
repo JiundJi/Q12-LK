@@ -59,9 +59,7 @@ public class Vokabelliste extends JDialog {
       }
     });
     cp.add(bZurueck);
-    for (int i=0; i<vk.getVokabelanzahl();i++) {
-      jTextField1.setText(vk.vokabelfeld[i].getDeutsch() + " = " + vk.vokabelfeld[i].getEnglisch() + "\n");
-    }
+    jTextField1.setText(vk.toString());
     // Ende Komponenten
     
     this.vk = vk;

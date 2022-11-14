@@ -24,6 +24,10 @@ public class Vokabelkasten {
     for (int i=0;i<vokabelfeld.length;i++) {
         if (vokabelfeld[i].getDeutsch() == deutsch) {
             vokabelfeld[i] = null;
+            for (int j=i; j<vokabelfeld.length - 1;j++) {
+              vokabelfeld[j] = vokabelfeld[j+1];
+            }
+            vokabelfeld[vokabelfeld.length - 1] = null;
             return true;
         }
     }
@@ -31,7 +35,13 @@ public class Vokabelkasten {
   }
 
   public String toString() {
-    return "-1";
+    String text = "\n";
+    for (int i=0; i<vokabelfeld.length-1;i++) {
+      if (vokabelfeld[i] != null) {
+        text = (vokabelfeld[i].getDeutsch() + " = " + vokabelfeld[i].getEnglisch() + "\n");
+      }
+    }
+    return text;
   }
   
 }

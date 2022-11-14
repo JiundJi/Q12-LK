@@ -50,7 +50,7 @@ public class Vokabelstatistik extends JDialog {
     jTextArea1ScrollPane.setBounds(38, 64, 264, 100);
     cp.add(jTextArea1ScrollPane);
     bZurueck.setBounds(187, 186, 123, 25);
-    bZurueck.setText("Zur�ck");
+    bZurueck.setText("Zurueck");
     bZurueck.setMargin(new Insets(2, 2, 2, 2));
     bZurueck.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
