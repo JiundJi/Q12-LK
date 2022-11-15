@@ -47,7 +47,7 @@ public class Vokabelliste extends JDialog {
     cp.setBackground(new Color(0x404040));
     canvas1.setBounds(54, 80, 452, 300);
     canvas1.setBackground(Color.GRAY);
-    cp.add(canvas1);
+    //cp.add(canvas1);
     jTextField1.setBounds(93, 115, 374, 228);
     cp.add(jTextField1);
     bZurueck.setBounds(327, 408, 203, 33);
@@ -59,12 +59,10 @@ public class Vokabelliste extends JDialog {
       }
     });
     cp.add(bZurueck);
-    for (int i=0; i<vk.getVokabelanzahl();i++) {
-      jTextField1.setText(vk.vokabelfeld[i].getDeutsch() + " = " + vk.vokabelfeld[i].getEnglisch() + "\n");
-    }
+    this.vk = vk;
+    jTextField1.setText(vk.toString());
     // Ende Komponenten
     
-    this.vk = vk;
     setResizable(false);
     setVisible(true);
   } // end of public Vokabelliste
