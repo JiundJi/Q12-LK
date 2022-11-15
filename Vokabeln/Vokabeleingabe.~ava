@@ -78,22 +78,20 @@ public class Vokabeleingabe extends JDialog {
   
   // Anfang Methoden
   public void bSpeichern_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einf?gen
-    if (jTextField1.getText() == null || jTextField2.getText() == null) {
+    if (jTextField1.getText() == null || jTextField2.getText() == null || jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty()) {
       System.out.println("ist null");
     }
     else {
       Vokabel v = new Vokabel(jTextField1.getText(), jTextField2.getText());
       if (vk.addVokabel(v)) {
-        jTextField1.setText("");
-        jTextField2.setText("");
+        jTextField1.setText(" ");
+        jTextField2.setText(" ");
         return;
       } else {System.out.println("fehler beim speichern");}
     }
   } // end of bSpeichern_ActionPerformed
 
   public void bZurueck_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfuegen
     this.dispose();
   } // end of bZurueck_ActionPerformed
 
