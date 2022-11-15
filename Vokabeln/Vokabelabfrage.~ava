@@ -87,12 +87,12 @@ public class Vokabelabfrage extends JDialog {
   
   // Anfang Methoden
   public void bUeberpruefen_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einf�gen
+    // TODO hier Quelltext einf?gen
     
   } // end of bUeberpruefen_ActionPerformed
 
   public void bZurueck_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einf�gen
+    // TODO hier Quelltext einf?gen
     this.dispose();
   } // end of bZurueck_ActionPerformed
 
