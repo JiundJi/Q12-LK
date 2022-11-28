@@ -17,9 +17,10 @@ public class Vokabelliste extends JDialog {
   private Canvas canvas1 = new Canvas();
   private JTextField jTextField1 = new JTextField();
   private JButton bZurueck = new JButton();
+  private Vokabelkasten vk;
   // Ende Attribute
   
-  public Vokabelliste(JFrame owner, boolean modal) { 
+  public Vokabelliste(JFrame owner, boolean modal, Vokabelkasten vk) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -46,11 +47,11 @@ public class Vokabelliste extends JDialog {
     cp.setBackground(new Color(0x404040));
     canvas1.setBounds(54, 80, 452, 300);
     canvas1.setBackground(Color.GRAY);
-    cp.add(canvas1);
+    //cp.add(canvas1);
     jTextField1.setBounds(93, 115, 374, 228);
     cp.add(jTextField1);
     bZurueck.setBounds(327, 408, 203, 33);
-    bZurueck.setText("Zurück");
+    bZurueck.setText("Zurueck");
     bZurueck.setMargin(new Insets(2, 2, 2, 2));
     bZurueck.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -58,6 +59,8 @@ public class Vokabelliste extends JDialog {
       }
     });
     cp.add(bZurueck);
+    this.vk = vk;
+    jTextField1.setText(vk.toString());
     // Ende Komponenten
     
     setResizable(false);
@@ -66,7 +69,7 @@ public class Vokabelliste extends JDialog {
   
   // Anfang Methoden
   public void bZurueck_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einfuegen
     this.dispose();
   } // end of bZurueck_ActionPerformed
 

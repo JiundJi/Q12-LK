@@ -22,13 +22,14 @@ public class Vokabelabfrage extends JDialog {
   private JButton bZurueck = new JButton();
   private JTextArea jTextArea2 = new JTextArea("");
     private JScrollPane jTextArea2ScrollPane = new JScrollPane(jTextArea2);
+  private Vokabelkasten vk;
   // Ende Attribute
-                                                   public Vokabelabfrage(JFrame owner, boolean modal) { 
+  public Vokabelabfrage(JFrame owner, boolean modal, Vokabelkasten vk) { 
     // Dialog-Initialisierung
     super(owner, modal);
     setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     int frameWidth = 390; 
-    int frameHeight = 480;
+    int frameHeight = 493;
     setSize(frameWidth, frameHeight);
     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
     int x = (d.width - getSize().width) / 2;
@@ -58,7 +59,7 @@ public class Vokabelabfrage extends JDialog {
     jTextField1.setBounds(55, 224, 280, 36);
     cp.add(jTextField1);
     bUeberpruefen.setBounds(198, 268, 139, 33);
-    bUeberpruefen.setText("Überprüfen");
+    bUeberpruefen.setText("Ueberpruefen");
     bUeberpruefen.setMargin(new Insets(2, 2, 2, 2));
     bUeberpruefen.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -67,7 +68,7 @@ public class Vokabelabfrage extends JDialog {
     });
     cp.add(bUeberpruefen);
     bZurueck.setBounds(218, 386, 131, 33);
-    bZurueck.setText("Zurück");
+    bZurueck.setText("Zurueck");
     bZurueck.setMargin(new Insets(2, 2, 2, 2));
     bZurueck.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -78,19 +79,20 @@ public class Vokabelabfrage extends JDialog {
     jTextArea2ScrollPane.setBounds(57, 313, 280, 36);
     cp.add(jTextArea2ScrollPane);
     // Ende Komponenten
-    
+
+    this.vk = vk;
     setResizable(false);
     setVisible(true);
   } // end of public Vokabelabfrage
   
   // Anfang Methoden
   public void bUeberpruefen_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einf?gen
     
   } // end of bUeberpruefen_ActionPerformed
 
   public void bZurueck_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
+    // TODO hier Quelltext einf?gen
     this.dispose();
   } // end of bZurueck_ActionPerformed
 

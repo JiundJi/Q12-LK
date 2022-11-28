@@ -20,6 +20,7 @@ public class Main extends JFrame {
   private JButton bStatistik = new JButton();
   private JLabel lVerwaltung = new JLabel();
   private JLabel lVokabelabfrage = new JLabel();
+  private Vokabelkasten vk;
   // Ende Attribute
   
   public Main() { 
@@ -59,7 +60,7 @@ public class Main extends JFrame {
     });
     cp.add(bVokabellisteanzeigen);
     bVokabelhinzufuegen.setBounds(144, 170, 187, 33);
-    bVokabelhinzufuegen.setText("Vokabel hinzufügen");
+    bVokabelhinzufuegen.setText("Vokabel hinzufuegen");
     bVokabelhinzufuegen.setMargin(new Insets(2, 2, 2, 2));
     bVokabelhinzufuegen.addActionListener(new ActionListener() { 
       public void actionPerformed(ActionEvent evt) { 
@@ -95,6 +96,7 @@ public class Main extends JFrame {
     lVokabelabfrage.setFont(new Font("Dialog", Font.BOLD, 14));
     lVokabelabfrage.setForeground(Color.WHITE);
     cp.add(lVokabelabfrage);
+    vk = new Vokabelkasten(10);
     // Ende Komponenten
     
     setVisible(true);
@@ -107,23 +109,23 @@ public class Main extends JFrame {
   } // end of main
   
   public void bVokabellisteanzeigen_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    Vokabelliste dialog = new Vokabelliste(this, true);
+    // TODO hier Quelltext einfuegen
+    Vokabelliste dialog = new Vokabelliste(this, true, vk);
   } // end of bVokabellisteanzeigen_ActionPerformed
 
   public void bVokabelhinzufuegen_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    Vokabeleingabe dialog = new Vokabeleingabe(this, true);
+    // TODO hier Quelltext einfuegen
+    Vokabeleingabe dialog = new Vokabeleingabe(this, true, vk);
   } // end of bVokabelhinzufuegen_ActionPerformed
 
   public void bVokabelabfragestarten_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    Vokabelabfrage dialog = new Vokabelabfrage(this, true);
+    // TODO hier Quelltext einfuegen
+    Vokabelabfrage dialog = new Vokabelabfrage(this, true, vk);
   } // end of bVokabelabfragestarten_ActionPerformed
 
   public void bStatistik_ActionPerformed(ActionEvent evt) {
-    // TODO hier Quelltext einfügen
-    Vokabelstatistik dialog = new Vokabelstatistik(this, true);
+    // TODO hier Quelltext einfuegen
+    Vokabelstatistik dialog = new Vokabelstatistik(this, true, vk);
   } // end of bStatistik_ActionPerformed
 
   // Ende Methoden
