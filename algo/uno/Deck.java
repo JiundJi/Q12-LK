@@ -42,21 +42,14 @@ public class Deck {
 
 
   public void insertionsort() {
-    Card stored = new Card(0);
-    int position = -1;
-    for (int i = 0; i < cardfield.length-1; i++) {
-      if (cardfield[i].getNumber() > cardfield[i+1].getNumber()) {
-        stored = cardfield[i+1];
-        position = i+1;
-        for (int j = i; j >= 0; j--) {
-          if (cardfield[j].getNumber() < stored.getNumber()) {
-            for (int k = position; k > j; k--) {
-              cardfield[k] = cardfield[k-1];
-            }
-            cardfield[j] = stored;
-          }
-        }
+    for (int i = 0; i < cardfield.length; i++) {
+      Card stored = cardfield[i];
+      int position = i;
+      while (position > 0 && stored.getNumber() < cardfield[position - 1].getNumber()) {
+        cardfield[position] = cardfield[position - 1];
+        position--;
       }
+      cardfield[position] = stored;
     }
   }
 
