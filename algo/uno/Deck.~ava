@@ -53,6 +53,20 @@ public class Deck {
     }
   }
 
+  public Card search(int number) {
+    return searchBinary(number, 0, cardfield.length-1);
+  }
+
+  private Card searchBinary(int number, int left, int right) {
+    int m = (int) ((right+left)/2);
+    if (m < 0) return null;
+
+    if (number == cardfield[m].getNumber()) return cardfield[m];
+    else if (number < cardfield[m].getNumber()) return searchBinary(number, left, m);
+    else if (number > cardfield[m].getNumber()) return searchBinary(number, m, right);
+    return null;
+  }
+
 
   public String toString() {
     String foo = "debug\n";

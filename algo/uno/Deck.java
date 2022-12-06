@@ -4,7 +4,7 @@ public class Deck {
   public Deck(int count) {
     cardfield = new Card[count];
     for (int i = 0; i < count; i++) {
-      cardfield[i] = new Card((int) (Math.random() * 10));
+      cardfield[i] = new Card((int) (Math.random() * 100));
     }
   }
 
@@ -51,6 +51,26 @@ public class Deck {
       }
       cardfield[position] = stored;
     }
+  }
+
+  public Card search(int number) {
+    return searchBinary(number, 0, cardfield.length-1);
+  }
+
+  private Card searchBinary(int number, int left, int right) {
+    int m = (int) ((right+left)/2);
+
+    if (number == cardfield[m].getNumber()) return cardfield[m];
+    else if ((right-left) <= 1) return null;
+    else if (number > cardfield[m].getNumber()) {
+      if (cardfield[m++].getNumber() == cardfield[right].getNumber()) return cardfield[right];
+      return searchBinary(number, m, right);
+    }
+    else if (number < cardfield[m].getNumber()) {
+      if (cardfield[m--].getNumber() == cardfield[left].getNumber()) return cardfield[left];
+      return searchBinary(number, left, m);
+    }
+    return null;
   }
 
 
