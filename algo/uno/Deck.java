@@ -53,6 +53,39 @@ public class Deck {
     }
   }
 
+  public void quicksort(int left, int right) {
+    if (left >= right) {
+      return;
+    }
+    Card temp;
+    int middle;
+    int pivot = this.cardfield[left].getNumber();
+    int i = left++;
+    int j = right;
+    while (i <= j) {
+      while (j >= i && this.cardfield[j].getNumber() > pivot) {
+        j--;
+      }
+      while (i <= j && this.cardfield[i].getNumber() < pivot) {
+        i++;
+      }
+      if (i <= j) {
+        temp = this.cardfield[i];
+        this.cardfield[i] = this.cardfield[j];
+        this.cardfield[j] = temp;
+        i++;
+        j--;
+      }
+    }
+    temp = this.cardfield[j];
+    this.cardfield[j] = this.cardfield[left];
+    this.cardfield[left] = temp;
+    middle = j;
+    System.out.println(toString());
+    quicksort(left, middle--);
+    quicksort(middle++, right);
+  }
+
   public Card search(int number) {
     return searchBinary(number, 0, cardfield.length-1);
   }

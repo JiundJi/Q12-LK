@@ -6,14 +6,14 @@ public class Main {
   public static void main(String[] args) {
     Deck deck = new Deck(20);
     System.out.println(deck.toString());
-    deck.insertionsort();
+    deck.quicksort(0, 19);
     System.out.println(deck.toString());
 
-    int m = sc.nextInt();
-    while (true) { 
-      m = sc.nextInt();
-      System.out.println("::" + deck.search(m));
-    } // end of while
+    // int m = sc.nextInt();
+    // while (true) { 
+    //   m = sc.nextInt();
+    //   System.out.println("::" + deck.search(m));
+    // } // end of while
     
   }
 }
