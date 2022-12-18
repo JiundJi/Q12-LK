@@ -84,20 +84,20 @@ public class Deck {
     this.cardfield[j] = this.cardfield[left];
     this.cardfield[left] = temp;
     middle = j;
+    System.out.println(toString());
     quicksort(left, middle-1);
     quicksort(middle+1, right);
   }
 
   public void sort() {
-    System.out.println("---Sortieren---");
-    System.out.println("\n[1] Bubblesort \n[2] Selectionsort \n[3] Insertionsort \n[4] QuickSort \n[5] Exit \n");
+    System.out.println("[1] Bubblesort \n[2] Selectionsort \n[3] Insertionsort \n[4] QuickSort \n[5] Exit ");
 
     int m = sc.nextInt();
     switch(m) {
       case 1: bubblesort(); return;
       case 2: selectionsort(); return;
       case 3: insertionsort(); return;
-      case 4: quicksort(0, cardfield.length-1); return;
+      case 4: quicksort(); return;
       case 5: return;
     }
     return;
@@ -125,7 +125,7 @@ public class Deck {
 
 
   public String toString() {
-    String foo = "\n";
+    String foo = "debug\n";
     for (int i = 0; i < cardfield.length; i++) {
       foo += cardfield[i].getNumber() + " ";
     }
