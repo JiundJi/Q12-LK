@@ -1,5 +1,8 @@
+import java.util.Scanner;
+
 public class Deck {
   private Card cardfield[];
+  static Scanner sc = new Scanner(System.in);
 
   public Deck(int count) {
     cardfield = new Card[count];
@@ -60,7 +63,7 @@ public class Deck {
     Card temp;
     int middle;
     int pivot = this.cardfield[left].getNumber();
-    int i = left++;
+    int i = left+1;
     int j = right;
     while (i <= j) {
       while (j >= i && this.cardfield[j].getNumber() > pivot) {
@@ -81,9 +84,23 @@ public class Deck {
     this.cardfield[j] = this.cardfield[left];
     this.cardfield[left] = temp;
     middle = j;
-    System.out.println(toString());
-    quicksort(left, middle--);
-    quicksort(middle++, right);
+    quicksort(left, middle-1);
+    quicksort(middle+1, right);
+  }
+
+  public void sort() {
+    System.out.println("---Sortieren---");
+    System.out.println("\n[1] Bubblesort \n[2] Selectionsort \n[3] Insertionsort \n[4] QuickSort \n[5] Exit \n");
+
+    int m = sc.nextInt();
+    switch(m) {
+      case 1: bubblesort(); return;
+      case 2: selectionsort(); return;
+      case 3: insertionsort(); return;
+      case 4: quicksort(0, cardfield.length-1); return;
+      case 5: return;
+    }
+    return;
   }
 
   public Card search(int number) {
@@ -108,7 +125,7 @@ public class Deck {
 
 
   public String toString() {
-    String foo = "debug\n";
+    String foo = "\n";
     for (int i = 0; i < cardfield.length; i++) {
       foo += cardfield[i].getNumber() + " ";
     }
