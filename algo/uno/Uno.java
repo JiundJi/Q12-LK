@@ -1,4 +1,4 @@
-public class Main {
+public class Uno {
   public static void main(String[] args) {
     Deck deck = new Deck(10);
     System.out.println(deck.toString());
